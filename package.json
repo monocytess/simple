@@ -1,0 +1,55 @@
+{
+  "name": "simple",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky",
+    "lint-staged": "lint-staged",
+    "cm": "git-cz",
+    "commitlint": "commitlint -e -V",
+    "plop": "plop",
+    "stylelint:fix": "stylelint 'src/**/*.{html,vue,css,scss}' --fix",
+    "stylelint:out": "stylelint 'src/**/*.{html,vue,css,scss}' -o .stylelint-output.txt -f string"
+  },
+  "keywords": [],
+  "author": "pan",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "commitizen": "^4.3.0",
+    "consola": "^3.2.3",
+    "cz-git": "^1.9.1",
+    "eslint": "^9.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-vue": "^9.26.0",
+    "fs-extra": "^11.2.0",
+    "got": "^14.2.1",
+    "husky": "^9.0.11",
+    "inquirer": "^9.2.21",
+    "inquirer-autocomplete-prompt": "^3.0.1",
+    "lint-staged": "^15.2.2",
+    "luxon": "^3.4.4",
+    "npm-run-all": "^4.1.5",
+    "plop": "^4.0.1",
+    "prettier": "^3.2.5",
+    "stylelint": "^16.5.0",
+    "stylelint-config-recess-order": "^5.0.1",
+    "stylelint-config-recommended-scss": "^14.0.0",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "stylelint-config-standard-vue": "^1.0.0",
+    "vite": "^5.2.11",
+    "vite-plugin-eslint": "^1.8.1"
+  },
+  "lint-staged": {
+    "src/**/*.{jsx,txs,ts,js,vue,json,css,,less,sass,md}": [
+      "prettier --check",
+      "prettier --write"
+    ]
+  }
+}

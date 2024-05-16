@@ -1,0 +1,5 @@
+{
+  "src/**/*.{vue,scss,css,less}": [
+    "pnpm run stylelint:out"
+  ]
+}
