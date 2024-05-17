@@ -6,32 +6,47 @@
 }
 
 html, body {
+  height: 100%;
   padding: 0;
   margin: 0;
+  overflow-x: hidden;
   font-family: Roboto, sans-serif;
 }
 
-body {
+.background{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
   background-repeat: no-repeat;
-  background-position: inherit;
+  background-position: center;
   background-size: cover;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  height: 100vh;
 }
 
 .key-main {
   display: flex;
-  flex: 1;
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-evenly;
   min-height: 55vh;
 }
 
-.key-footer{
+.key-footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  height: 45vh;
+  justify-content: flex-end;
+  padding-top: 30px;
 }
 
 .key {
@@ -49,20 +64,38 @@ body {
   transition: all 0.07s;
 }
 
-.float{
-  padding: 6px 30px;
-  margin-top: 30px;
+.key-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0;
+  color: white;
+  text-shadow: 0 0 5px white;
+  cursor: pointer;
+  background: rgb(0 0 0 / 40%);
+  border: 1px solid white;
+  transition: all 0.07s;
 }
 
-.playing{
+.float {
+  padding: 6px 30px;
+}
+
+.playing {
   border-color: yellow;
   box-shadow: 0 0 10px yellow;
   transform: scale(1.1)
 }
 
-kbd{
+kbd {
   display: block;
   font-size: 1.5rem;
+}
+
+.kbd-mobile {
+  display: block;
+  font-size: 0.9rem;
 }
 
 .key-tips {
@@ -71,10 +104,39 @@ kbd{
   color: yellow;
 }
 
-.footer{
+.footer {
   display: flex;
-  align-items: center;
   justify-content: center;
+  margin-bottom: 12px;
   font-size: 0.8rem;
   color: white;
+}
+
+.footer a{
+  display: inline-block;
+  margin:0 8px;
+  color: white;
+  text-decoration-line: none;
+  transition: color 0.3s ease 0s;
+}
+
+.footer a::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  display: block;
+  width: 0;
+  height: 2px;
+  content: "";
+  background: yellow;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+}
+
+.footer a:hover::after {
+  left: 0;
+  width: 100%;
+}
+
+.footer a:hover {
+  color: yellow;
 }
