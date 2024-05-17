@@ -14,18 +14,19 @@
       const windowHeight = window.innerHeight
 
       const aspectRatio = windowWidth / windowHeight
-      console.log(aspectRatio)
+      const background = document.querySelector('.background')
 
       if (aspectRatio > 1.75) {
-        document.body.style.backgroundImage = 'url("./assets/images/landscape_1x2.jpg")'
+        background.style.backgroundImage = 'url("./assets/images/landscape_1x2.jpg")'
       } else if (aspectRatio > 0.80) {
-        document.body.style.backgroundImage = 'url("./assets/images/portrait_1x1.jpg")'
+        background.style.backgroundImage = 'url("./assets/images/portrait_1x1.jpg")'
       } else {
-        document.body.style.backgroundImage = 'url("./assets/images/portrait_2x1.jpg")'
+        background.style.backgroundImage = 'url("./assets/images/portrait_2x1.jpg")'
       }
     }
 
     window.addEventListener('resize', adaptBackgroundImage);
+
     window.addEventListener('DOMContentLoaded', function () {
       window.dispatchEvent(new Event('resize'))
     })
@@ -34,10 +35,16 @@
 
 </head>
 <body>
+<div class="background"></div>
 
-<main>
+<div class="container">
+  <main>
 
-</main>
+  </main>
+  <footer class="footer">
+    mode by <a href="https://github.com/hviwen" target="_blank">&copy;pan</a> 2024
+  </footer>
+</div>
 
 </body>
 </html>
