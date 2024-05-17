@@ -1,3 +1,10 @@
+@font-face {
+  font-family: Leckerli;
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/LeckerliOne-Regular.ttf") format('truetype');
+}
+
 html, body {
   padding: 0;
   margin: 0;
@@ -8,4 +15,66 @@ body {
   background-repeat: no-repeat;
   background-position: inherit;
   background-size: cover;
+}
+
+.key-main {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  min-height: 55vh;
+}
+
+.key-footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 45vh;
+}
+
+.key {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 0 0 5px white;
+  cursor: pointer;
+  background: rgb(0 0 0 / 40%);
+  border: 1px solid white;
+  transition: all 0.07s;
+}
+
+.float{
+  padding: 6px 30px;
+  margin-top: 30px;
+}
+
+.playing{
+  border-color: yellow;
+  box-shadow: 0 0 10px yellow;
+  transform: scale(1.1)
+}
+
+kbd{
+  display: block;
+  font-size: 1.5rem;
+}
+
+.key-tips {
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: yellow;
+}
+
+.footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: white;
 }
