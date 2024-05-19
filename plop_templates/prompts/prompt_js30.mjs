@@ -29,6 +29,7 @@ export default {
       {
         type: 'add',
         path: `src/js30/${name}/index.js`,
+        templateFile: 'plop_templates/template/js30/index.js.hbs'
       },
       {
         type: 'copyAssets',

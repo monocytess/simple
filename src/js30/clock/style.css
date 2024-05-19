@@ -1,0 +1,215 @@
+@font-face {
+  font-family: Leckerli;
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/LeckerliOne-Regular.ttf") format('truetype');
+}
+
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: Roboto, sans-serif;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.clock {
+  position: relative;
+  width: 18rem;
+  height: 18rem;
+  padding: 2rem;
+  margin: 50px auto;
+  border: 7px solid white;
+  border-radius: 50%;
+  box-shadow: -4px -4px 10px rgb(67 67 67 / 50%),
+  inset 4px 4px 10px rgb(0 0 0 / 50%),
+  inset -4px -4px 10px rgb(67 67 67 / 50%),
+  4px 4px 10px rgb(0 0 0 / 30%);
+}
+
+.outer-clock-face {
+  position: relative;
+  width: 120%;
+  height: 120%;
+  margin-top: -10%;
+  margin-left: -10%;
+  overflow: hidden;
+  border-radius: 100%;
+}
+
+.outer-clock-face::after {
+  transform: rotate(90deg);
+}
+
+.outer-clock-face::after,
+.outer-clock-face::before,
+.outer-clock-face .marking {
+  position: absolute;
+  left: 49%;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  height: 100%;
+  content: '';
+}
+
+.outer-clock-face .marking {
+  width: 2%;
+}
+
+.outer-clock-face .marking .clock-header, .clock-footer {
+  width: 6px;
+  height: 16px;
+  background: yellow;
+}
+
+.outer-clock-face .marking .clock-header-weight, .clock-footer-weight {
+  width: 6px;
+  height: 20px;
+  background: lawngreen;
+}
+
+.outer-clock-face.marking .clock-footer-weight::after {
+  margin-bottom: -2%;
+}
+
+.outer-clock-face .marking-zero{
+  transform: rotate(0deg);
+}
+
+.outer-clock-face .marking-one {
+  transform: rotate(30deg);
+}
+
+.outer-clock-face .marking-two {
+  transform: rotate(60deg);
+}
+
+.outer-clock-face .marking-row {
+  transform: rotate(90deg);
+}
+
+.outer-clock-face .marking-three {
+  transform: rotate(120deg);
+}
+
+.outer-clock-face .marking-four {
+  transform: rotate(150deg);
+}
+
+.clock-face {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  z-index: 1;
+  width: 80%;
+  height: 80%;
+  border-radius: 100%;
+}
+
+.hand {
+  position: absolute;
+  top: 50%;
+  width: 50%;
+  height: 6px;
+  background: white;
+  border-radius: 6px;
+  transition: all 0.5s;
+  transition-timing-function: cubic-bezier(0.1, 2.55, 0.5, 1);
+  transform: rotate(90deg);
+  transform-origin: 100%;
+}
+
+.hand.hand-hour {
+  top: 49%;
+  left: 21%;
+  z-index: 3;
+  width: 30%;
+  background-color: white;
+}
+
+.hand.hand-minute {
+  left: 11%;
+  z-index: 10;
+  width: 40%;
+  height: 3px;
+  background-color: white;
+}
+
+.hand.hand-second {
+  z-index: 20;
+  width: 50%;
+  height: 2px;
+  background-color: white;
+}
+
+.clock-center{
+  position: absolute;
+  top: 48%;
+  left: 49%;
+  z-index: 2;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+}
+
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+  font-size: 0.8rem;
+  color: white;
+}
+
+.footer a {
+  display: inline-block;
+  margin: 0 8px;
+  color: white;
+  text-decoration-line: none;
+  transition: color 0.3s ease 0s;
+}
+
+.footer a::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  display: block;
+  width: 0;
+  height: 2px;
+  content: "";
+  background: yellow;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+}
+
+.footer a:hover::after {
+  left: 0;
+  width: 100%;
+}
+
+.footer a:hover {
+  color: yellow;
+}
