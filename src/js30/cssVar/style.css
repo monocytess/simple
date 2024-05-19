@@ -1,0 +1,116 @@
+@font-face {
+  font-family: Leckerli;
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/LeckerliOne-Regular.ttf") format('truetype');
+}
+
+:root{
+  --base: #ffc600;
+  --spacing: 10px;
+  --blur: 10px;
+}
+
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: Roboto, sans-serif;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.header-tips{
+  font-size: 1.8rem;
+  color: white;
+}
+
+.control-space{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 20px 0;
+}
+
+.control-space .range-box{
+  align-items: center;
+  margin-top: 20px;
+  font-size: 1.4rem;
+  color: white;
+}
+
+.t-img{
+  padding: var(--spacing);
+  background: var(--base);
+  filter: blur(var(--blur));
+}
+
+.h1{
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--base);
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+  font-size: 0.8rem;
+  color: white;
+}
+
+.footer a {
+  display: inline-block;
+  margin: 0 8px;
+  color: white;
+  text-decoration-line: none;
+  transition: color 0.3s ease 0s;
+}
+
+.footer a::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  display: block;
+  width: 0;
+  height: 2px;
+  content: "";
+  background: yellow;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+}
+
+.footer a:hover::after {
+  left: 0;
+  width: 100%;
+}
+
+.footer a:hover {
+  color: yellow;
+}
