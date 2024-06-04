@@ -10,7 +10,8 @@
     "commitlint": "commitlint -e -V",
     "plop": "plop",
     "stylelint:fix": "stylelint 'src/**/*.{html,vue,css,scss}' --fix",
-    "stylelint:out": "stylelint 'src/**/*.{html,vue,css,scss}' -o .stylelint-output.txt -f string"
+    "stylelint:out": "stylelint 'src/**/*.{html,vue,css,scss}' -o .stylelint-output.txt -f string",
+    "commit-all": "git add . && git sts & git-cz"
   },
   "keywords": [],
   "author": "pan",
