@@ -12,7 +12,7 @@ import {js30Generator} from "./plop_templates/prompts/index.mjs";
 export default function (plop) {
   plop.setPrompt('autocomplete', inquirerAuto);
 
-  plop.setActionType('copyAssets', function (answers, config, plop) {
+  /*plop.setActionType('copyAssets', function (answers, config, plop) {
     console.log('config', config)
 
     return new Promise((resolve, reject) => {
@@ -27,6 +27,7 @@ export default function (plop) {
         });
     });
   })
+*/
 
   plop.setGenerator('js30', js30Generator)
 }

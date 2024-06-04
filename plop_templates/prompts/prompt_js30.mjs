@@ -31,11 +31,11 @@ export default {
         path: `src/js30/${name}/index.js`,
         templateFile: 'plop_templates/template/js30/index.js.hbs'
       },
-      {
-        type: 'copyAssets',
-        name: 'copyAssets',
-        speed: 'slow'
-      }
+      // {
+      //   type: 'copyAssets',
+      //   name: 'copyAssets',
+      //   speed: 'slow'
+      // }
     ]
 
     return actions
