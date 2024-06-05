@@ -1,8 +1,4 @@
-function isMobileDevice() {
-  return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-}
-
-const panels = document.querySelectorAll('.panel');
+ const panels = document.querySelectorAll('.panel');
 
 function toggleOpen() {
   this.classList.toggle('open');

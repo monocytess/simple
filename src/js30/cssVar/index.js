@@ -1,7 +1,3 @@
-function isMobileDevice() {
-  return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-}
-
 const inputs = document.querySelectorAll('.control-space input');
 
 function handleUpdate() {
