@@ -11,10 +11,22 @@ export default {
         }
         return true
       }
+    },
+    {
+      type: 'input',
+      name: 'description',
+      message: 'description:',
+      validate(description) {
+        if (!description) {
+          return 'please input description'
+        }
+        return true
+      }
     }
   ],
   actions: (data) => {
     const name = "{{name}}";
+    const description = "{{description}}";
     let actions = [
       {
         type: 'add',
