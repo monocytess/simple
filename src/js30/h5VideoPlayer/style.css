@@ -1,0 +1,207 @@
+@import "../../css/js30.css";
+
+main {
+  width: 100%;
+  height: 100vh;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: black;
+}
+
+.viewer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  min-width: 540px;
+  max-width: 1080px;
+  box-shadow: 0 0 10px 5px rgba(0 0 0 / 50%);
+}
+
+.control-block {
+  position: absolute;
+  bottom: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  min-width: 400px;
+  max-width: 540px;
+  height: 90px;
+  max-height: 120px;
+  padding: 0 14px 6px;
+  background: rgba(255 255 255 / 75%);
+  border-radius: 10px;
+  opacity: 0.8;
+  transition: hover 1s, opacity 1s ease-out 0s;
+}
+
+.control-block:hover {
+  box-shadow: 0 0 10px 5px rgba(0 0 0 / 50%);
+}
+
+.control-bar, .progress-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-bar {
+  position: relative;
+  top: -10px;
+}
+
+.volume-box, .play-box, .speed-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.volume-icon, .speed-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+}
+
+.play-box {
+  justify-content: center;
+  width: 100%;
+}
+
+.previous, .next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previous {
+  margin-right: 10px;
+}
+
+.next {
+  margin-left: 10px;
+}
+
+.control-range {
+  width: 100%;
+  height: 3px; /* 滑动条高度 */
+  -webkit-appearance: none; /* 去掉默认样式 (适用于 Chrome) */
+  cursor: pointer;
+  background: rgb(60 60 60 / 85%); /* 滑动条背景色 */
+  border-radius: 5px; /* 圆角 */
+  outline: none; /* 去掉边框 */
+  opacity: 0.7; /* 不透明度 */
+  transition: all 0.2s; /* 动画效果 */
+}
+
+.control-range:hover {
+  height: 4px;
+  opacity: 1; /* 鼠标悬停时不透明 */
+}
+
+.control-range::-webkit-slider-thumb {
+  width: 10px; /* 滑块宽度 */
+  height: 10px; /* 滑块高度 */
+  -webkit-appearance: none; /* 去掉默认样式 */
+  appearance: none;
+  background: rgb(30 30 30 / 100%); /* 滑块背景色 */
+  border-radius: 50%;
+}
+
+.control-range::-webkit-slider-thumb:hover {
+  width: 12px; /* 滑块宽度 */
+  height: 12px; /* 滑块高度 */
+}
+
+.control-block-on-move {
+  box-shadow: 0 0 10px 5px rgba(0 0 0 / 50%);
+}
+
+.control-block-on-moved {
+  animation: fidelity 2s forwards ease-out;
+}
+
+.rate-value {
+  margin: 0 5px;
+  font-size: 0.8em;
+  color: rgb(60 60 60 / 85%); /* 滑动条背景色 */
+  text-align: center;
+  transition: color 0.2s;
+}
+
+.rate-value:hover {
+  color: rgb(60 60 60 / 100%);
+}
+
+.range-progress {
+  width: 80%;
+  height: 5px;
+  -webkit-appearance: none; /* 去掉默认样式 (适用于 Chrome) */
+  background: linear-gradient(to right, rgb(30 30 30 / 65%) 0%, #ccc 0%);
+  border-radius: 5px; /* 圆角 */
+  outline: none; /* 去掉边框 */
+  opacity: 0.7; /* 不透明度 */
+  transition: all 0.2s; /* 动画效果 */
+}
+
+.range-progress:hover {
+  background: linear-gradient(to right, rgb(30 30 30 / 65%) 0%, rgb(30 30 30 / 85%) 100%);
+  opacity: 1; /* 鼠标悬停时不透明 */
+}
+
+.range-progress::-webkit-slider-thumb {
+  width: 6px; /* 滑块宽度 */
+  height: 14px; /* 滑块高度 */
+  margin-top: -4px;
+  -webkit-appearance: none; /* 去掉默认样式 */
+  appearance: none;
+  cursor: pointer;
+  background: rgb(30 30 30 / 100%); /* 滑块背景色 */
+  border-radius: 4px;
+}
+
+.range-progress::-webkit-slider-thumb:hover {
+  width: 8px; /* 滑块宽度 */
+  border-radius: 2px;
+}
+
+.range-progress::-webkit-slider-runnable-track {
+  width: 80%;
+  height: 5px;
+  cursor: pointer;
+  background: linear-gradient(to right, rgb(30 30 30 / 85%) 0%, #ccc 0%);
+  border-radius: 5px; /* 圆角 */
+  outline: none; /* 去掉边框 */
+  opacity: 0.7; /* 不透明度 */
+}
+
+.range-progress::-moz-range-track {
+  width: 80%;
+  height: 5px;
+  cursor: pointer;
+  background: linear-gradient(to right, rgb(30 30 30 / 85%) 0%, #ccc 0%);
+  border-radius: 5px; /* 圆角 */
+  outline: none; /* 去掉边框 */
+  opacity: 0.7; /* 不透明度 */
+}
+
+.time {
+  margin: 0 5px;
+  font-size: 0.8rem;
+}
+
+.player__button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
