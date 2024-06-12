@@ -1,0 +1,47 @@
+@import "../../css/js30.css";
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.hero > h1 {
+  color: white;
+  transform: rotate(350deg);
+}
+
+.bands-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.bands-list:last-child {
+  margin-bottom: 50px;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 20px;
+  font-weight: normal;
+  background: #f4f4f4;
+  transition: all 0.3s;
+  text-underline: none;
+}
+
+.list-item:hover {
+  font-weight: bold;
+  background: #eaeaea;
+}
