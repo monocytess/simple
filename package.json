@@ -6,12 +6,12 @@
   "scripts": {
     "prepare": "husky",
     "lint-staged": "lint-staged",
-    "cm": "git-cz",
     "commitlint": "commitlint -e -V",
     "plop": "plop",
     "stylelint:fix": "stylelint 'src/**/*.{html,vue,css,scss}' --fix",
     "stylelint:out": "stylelint 'src/**/*.{html,vue,css,scss}' -o .stylelint-output.txt -f string",
-    "commit-all": "git add . && git sts & git-cz"
+    "cm": "git-cz",
+    "cm:feat": "git sts && git add . && git sts && git-cz && git push origin HEAD -f"
   },
   "keywords": [],
   "author": "pan",

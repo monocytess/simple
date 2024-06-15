@@ -1,0 +1,53 @@
+@import "../../css/js30.css";
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.highlight {
+  position: absolute;
+  z-index: -1;
+  display: block;
+  background: #ffc600;
+  transition: all 0.2s;
+}
+
+.nav-bar > li > a {
+  margin: 10px;
+  font-size: 1.5em;
+  color: white;
+  text-decoration: none;
+  transition: hover 0.2s;
+}
+
+.nav-bar > li > a:hover {
+  font-weight: bold;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  font-size: 16px;
+  color: white;
+}
+
+.wrapper > p > a {
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+}
+
+.wrapper > p > a:hover {
+  font-weight: bold;
+}
