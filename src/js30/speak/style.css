@@ -1,0 +1,77 @@
+@import "../../css/js30.css";
+
+body {
+  font-family: 'helvetica neue';
+  font-size: 20px;
+  font-weight: 200;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.words {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  min-width: 300px;
+  max-width: 500px;
+  padding: 1rem 2rem 1rem 3rem;
+  margin-top: 15vh;
+  margin-bottom: 20vh;
+  line-height: 3rem;
+  background: linear-gradient(180deg, #d9eaf3, #fff 4%) 0 4px;
+  background-size: 100% 3rem;
+  border-radius: 5px;
+  box-shadow: 10px 10px 0 rgb(0 0 0 / 10%);
+}
+
+.inline-wrapper{
+  display: inline-flex;
+  align-items: center;
+}
+
+p {
+  margin: 0 0 3rem;
+}
+
+.words::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 30px;
+  width: 4px;
+  content: '';
+  border: 1px solid;
+  border-color: transparent #efe4e4;
+}
+
+.listening {
+  background: #ffc600;
+  background: linear-gradient(180deg, #ffdb4c, #ffc600);
+}
+
+.loading {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(0 0 0 / 45%);
+  border-radius: 50%;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
