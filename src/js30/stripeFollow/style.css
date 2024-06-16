@@ -1,0 +1,165 @@
+@import "../../css/js30.css";
+
+html, body {
+  min-height: 100vh;
+  overflow-x: initial;
+}
+
+.background {
+  position: fixed;
+}
+
+.footer {
+  z-index: 1;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+}
+
+nav {
+  position: relative;
+  perspective: 600px;
+}
+
+nav > ul {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.cool > li {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.cool > li > a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 20px;
+  font-size: 20px;
+  color: yellow;
+  text-decoration: none;
+  background: rgb(0 0 0 / 10%);
+  border-radius: 5px;
+}
+
+.dropdown {
+  position: absolute;
+  top: -20px;
+  display: none;
+  padding: 20px 10px 10px;
+  overflow: hidden;
+  border-radius: 5px;
+  opacity: 0;
+  transition: all 0.5s;
+  transform: translateY(100px);
+  will-change: transform;
+}
+
+.trigger-enter .dropdown {
+  display: block;
+}
+
+.trigger-enter-active .dropdown {
+  opacity: 1;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+.dropdownBackground {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+  opacity: 0;
+  transition: all 0.5s, opacity 0.1s, translate 0.2s;
+  transform-origin: 50% 0%;
+}
+
+.dropdownBackground.open {
+  opacity: 1;
+}
+
+.arrow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  background: #fff;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.bio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 500px;
+  margin-top: 20px;
+  line-height: 1.7;
+}
+
+.bio img {
+  float: left;
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+  border-radius: 2px;
+}
+
+.bio p {
+  font-size: 1.2rem;
+  color: #363636;
+}
+
+.dropdown2 {
+  min-width: 300px;
+  margin-top: 20px;
+}
+
+.dropdown3 {
+  margin-top: 20px;
+}
+
+.dropdown2 li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgb(0 0 0 / 10%);
+}
+
+.dropdown2 li:last-child {
+  border-bottom: 0;
+}
+
+.dropdown3 > li {
+  margin-top: 5px;
+}
+
+.dropdown a {
+  color: #ffc600;
+  text-decoration: none;
+}
+
+a.button {
+  display: block;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  color: white;
+  background: black;
+}
