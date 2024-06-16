@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="一个跟随导航栏浮动动画的悬浮窗练习">
+  <title>stripeFollow</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="./../../assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./../../assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./../../assets/favicon-16x16.png">
+  <script defer src="../../common/js30.base.js"></script>
+</head>
+
+<body>
+<div class="background"></div>
+
+<main>
+  <nav class="top">
+    <div class="dropdownBackground">
+      <span class="arrow"></span>
+    </div>
+
+    <ul class="cool">
+      <li>
+        <a href="#">Home</a>
+        <div class="dropdown">
+          <div class="bio">
+            <img src="https://avatars.githubusercontent.com/u/16145351?v=4"/>
+            <p>
+              👨🏻‍💻 I'm a front-end developer, I like to create beautiful things with code.
+            </p>
+          </div>
+        </div>
+        </div>
+      </li>
+      <li>
+        <a href="#about">About Me</a>
+        <ul class="dropdown">
+          <div class="dropdown2">
+            <li>
+              <span class="code">RFB</span>
+              <a href="https://github.com/hviwen">javascript + html + css</a>
+            </li>
+            <li>
+              <span class="code">ES6</span>
+              <a href="https://github.com/hviwen">es6 + react + redux</a>
+            </li>
+            <li>
+              <span class="code">RWD</span>
+              <a href="https://github.com/hviwen">responsive web design</a>
+            </li>
+          </div>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Others</a>
+        <ul class="dropdown ">
+          <div class="dropdown3">
+            <li>
+              <a class="button" href="https://github.com/hviwen">github</a>
+            </li>
+            <li>
+              <a class="button" href="https://hviwen.github.io/">blog</a>
+            </li>
+          </div>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</main>
+<footer class="footer">
+  👨🏻‍🎨 by <a href="https://github.com/hviwen" target="_blank">&copy;pan</a> 2024
+</footer>
+<script src="./index.js" defer></script>
+</body>
+</html>
