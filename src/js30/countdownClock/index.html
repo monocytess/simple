@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="一个可选的倒计时页面示例">
+  <title>countdownClock</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="./../../assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./../../assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./../../assets/favicon-16x16.png">
+  <script defer src="../../common/js30.base.js"></script>
+</head>
+
+<body>
+<div class="background"></div>
+
+<main>
+  <div class="header-block">
+    <span class="header-tips">All Around World Clock</span>
+    <img class="header-img" alt="world times"
+         src="https://ilill.oss-cn-beijing.aliyuncs.com/test/pexels/pexels-pixabay-48770.jpg"/>
+  </div>
+  <nav>
+    <ul class="nav-bar">
+      <li>
+        <div class="select-bar">
+          <label for="2024-count-down">2024假期</label>
+          <select name="select" id="2024-count-down">
+            <option value="">选择节日</option>
+            <option value="2024-01-01" disabled>元旦</option>
+            <option value="2024-02-10" disabled>春节</option>
+            <option value="2024-03-08" disabled>妇女节</option>
+            <option value="2024-04-04" disabled>清明节</option>
+            <option value="2024-05-01" disabled>劳动节</option>
+            <option value="2024-06-08" disabled>端午节</option>
+            <option value="2024-09-15">中秋节</option>
+            <option value="2024-10-01">国庆节</option>
+          </select>
+        </div>
+      </li>
+      <li>
+        <div class="select-bar">
+          <label for="festivals">节气</label>
+          <select name="select" id="festivals">
+            <option value="">选择节气</option>
+            <option value="2024-06-21">夏至</option>
+            <option value="2024-07-06">小暑</option>
+            <option value="2024-07-22">大暑</option>
+            <option value="2024-08-07">立秋</option>
+            <option value="2024-08-23">处暑</option>
+            <option value="2024-09-08">白露</option>
+            <option value="2024-09-23">秋分</option>
+            <option value="2024-10-08">寒露</option>
+            <option value="2024-10-23">霜降</option>
+            <option value="2024-11-07">立冬</option>
+            <option value="2024-11-22">小雪</option>
+            <option value="2024-12-06">大雪</option>
+            <option value="2024-12-21">冬至</option>
+          </select>
+        </div>
+      </li>
+      <li>
+        <div class="select-bar">
+          <label for="custom">
+            自定义
+            <input
+              type="number"
+              id="custom"
+              name="custom"
+              step="10"
+              min="0"
+              max="60000"
+              class="input-custom"
+              placeholder="要记录的时长(单位:分)"
+            />
+          </label>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <div class="clock-panel">
+    <div class="time-box day">
+      <span class="day-number">0</span>
+      <span class="day-text">天</span>
+    </div>
+    <div class="time-box hour">
+      <span class="hour-number">0</span>
+      <span class="hour-text">时</span>
+    </div>
+    <div class="time-box minute">
+      <span class="minute-number">0</span>
+      <span class="minute-text">分</span>
+    </div>
+    <div class="time-box second">
+      <span class="second-number">0</span>
+      <span class="second-text">秒</span>
+    </div>
+  </div>
+</main>
+<footer class="footer">
+  👨🏻‍🎨 by <a href="https://github.com/hviwen" target="_blank">&copy;pan</a> 2024
+</footer>
+<script src="./index.js" defer></script>
+</body>
+</html>
