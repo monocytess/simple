@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="打地鼠网页小游戏">
+  <title>whack</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="./../../assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./../../assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./../../assets/favicon-16x16.png">
+  <script defer src="../../common/js30.base.js"></script>
+</head>
+
+<body>
+<div class="background"></div>
+
+<main>
+  <div class="top-block">
+    <button class="start">Start</button>
+    <h1>Whack a mole </h1>
+    <span class="score">0</span>
+  </div>
+
+  <div class="game-area"></div>
+
+  <div class="game-desc">
+    <p>点击开始时，倒计时开始，每打中一个地鼠得一分！你可以选择不同难度和时间</p>
+  </div>
+  <div class="game-select">
+    <select name="select-hard" id="select-hard">
+      <option value="easy">简单</option>
+      <option value="medium">中等</option>
+      <option value="hard">困难</option>
+    </select>
+
+    <select name="select-time" id="select-time">
+      <option value="30">30s</option>
+      <option value="60">60s</option>
+      <option value="90">90s</option>
+    </select>
+  </div>
+  <div class="bar-box">
+    <img src="https://ilill.oss-cn-beijing.aliyuncs.com/js30/whack/pic_click.png" alt="a mould bar" class="bar-img"/>
+  </div>
+</main>
+
+<audio class="brandish" src="https://ilill.oss-cn-beijing.aliyuncs.com/js30/whack/tap-notification.mp3" hidden></audio>
+<audio class="get-source" src="https://ilill.oss-cn-beijing.aliyuncs.com/js30/whack/collectcoin-6075.mp3" hidden></audio>
+<footer class="footer">
+  👨🏻‍🎨 by <a href="https://github.com/hviwen" target="_blank">&copy;pan</a> 2024
+</footer>
+<script src="./index.js" defer></script>
+</body>
+</html>
