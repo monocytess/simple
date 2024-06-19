@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,40 +11,86 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./../../assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./../../assets/favicon-16x16.png">
   <script defer src="../../common/js30.base.js"></script>
-  <script src="./index.js" defer></script>
 </head>
 
 <body>
 <div class="background"></div>
 
 <main>
-  <nav>
+  <div class="top-block">
+    <img
+      src="https://ilill.oss-cn-beijing.aliyuncs.com/test/pexels/pexels-math-90946.jpg"
+      class="top-image"
+      alt="float">
+  </div>
+
+  <nav class="nav">
     <ul class="nav-bar">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#server">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
   <div class="wrapper">
-    <p>Lorem ipsum dolor sit amet, <a href="">consectetur</a> adipisicing elit. Est <a href="">explicabo</a> unde natus
-      necessitatibus esse obcaecati distinctio, aut itaque, qui vitae!</p>
-    <p>Aspernatur sapiente quae sint <a href="">soluta</a> modi, atque praesentium laborum pariatur earum <a href="">quaerat</a>
-      cupiditate consequuntur facilis ullam dignissimos, aperiam quam veniam.</p>
-    <p>Cum ipsam quod, incidunt sit ex <a href="">tempore</a> placeat maxime <a href="">corrupti</a> possimus <a
-      href="">veritatis</a> ipsum fugit recusandae est doloremque? Hic, <a href="">quibusdam</a>, nulla.</p>
-    <p>Esse quibusdam, ad, ducimus cupiditate <a href="">nulla</a>, quae magni odit <a href="">totam</a> ut consequatur
-      eveniet sunt quam provident sapiente dicta neque quod.</p>
-    <p>Aliquam <a href="">dicta</a> sequi culpa fugiat <a href="">consequuntur</a> pariatur optio ad minima, maxime <a
-      href="">odio</a>, distinctio magni impedit tempore enim repellendus <a href="">repudiandae</a> quas!</p>
-    <p>Enim, debitis <a href="">illo</a> aspernatur et tenetur <a href="">tempore</a> impedit. Ea, <a
-      href="">facilis</a>, dolorem, officia culpa delectus, <a href="">vero</a> ipsum quibusdam at quia aut laboriosam
-      <a href="">sit</a>.</p>
+    <div id="home" class="content-block">
+      <p>Lorem ipsum dolor sit amet, <a href="">consectetur</a> adipisicing elit. Est <a href="">explicabo</a> unde
+        natus
+        necessitatibus esse obcaecati distinctio, aut itaque, qui vitae!</p>
+    </div>
+
+    <div id="about" class="content-block">
+      <p>Aspernatur sapiente quae sint <a href="">soluta</a> modi, atque praesentium laborum pariatur earum <a href="">quaerat</a>
+        cupiditate consequuntur facilis ullam dignissimos, aperiam quam veniam.</p>
+      <p>Cum ipsam quod, incidunt sit ex <a href="">tempore</a> placeat maxime <a href="">corrupti</a> possimus <a
+        href="">veritatis</a> ipsum fugit recusandae est doloremque? Hic, <a href="">quibusdam</a>, nulla.</p>
+    </div>
+
+    <div id="server" class="content-block">
+      <p>Esse quibusdam, ad, ducimus cupiditate <a href="">nulla</a>, quae magni odit <a href="">totam</a> ut
+        consequatur
+        eveniet sunt quam provident sapiente dicta neque quod.</p>
+      <p>Aliquam <a href="">dicta</a> sequi culpa fugiat <a href="">consequuntur</a> pariatur optio ad minima, maxime <a
+        href="">odio</a>, distinctio magni impedit tempore enim repellendus <a href="">repudiandae</a> quas!</p>
+    </div>
+
+    <div id="contact" class="content-block">
+      <p>Enim, debitis <a href="">illo</a> aspernatur et tenetur <a href="">tempore</a> impedit. Ea, <a
+        href="">facilis</a>, dolorem, officia culpa delectus, <a href="">vero</a> ipsum quibusdam at quia aut laboriosam
+        <a href="">sit</a>.</p>
+    </div>
+
+    <div class="content-block">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est explicabo unde natus necessitatibus esse
+        obcaecati distinctio, aut itaque, qui vitae!</p>
+      <p>
+        Aspernatur sapiente quae sint soluta modi, atque praesentium laborum pariatur earum quaerat cupiditate
+        consequuntur facilis ullam dignissimos, aperiam quam veniam.
+      </p>
+      <p>
+        Cum ipsam quod, incidunt sit ex tempore placeat maxime corrupti possimus veritatis ipsum fugit recusandae est
+        doloremque? Hic, quibusdam, nulla.
+      </p>
+      <p>
+        Esse quibusdam, ad, ducimus cupiditate nulla, quae magni odit totam ut consequatur eveniet sunt quam provident
+        sapiente dicta neque quod.
+      </p>
+
+      <p>
+        Aliquam dicta sequi culpa fugiat consequuntur pariatur optio ad minima, maxime odio, distinctio magni impedit
+        tempore enim repellendus repudiandae quas!
+      </p>
+      <p>
+        Enim, debitis illo aspernatur et tenetur tempore impedit. Ea, facilis, dolorem, officia culpa delectus, vero
+        ipsum quibusdam at quia aut laboriosam sit.
+      </p>
+    </div>
   </div>
 </main>
 <footer class="footer">
   👨🏻‍🎨 by <a href="https://github.com/hviwen" target="_blank">&copy;pan</a> 2024
 </footer>
+<script src="./index.js" defer></script>
 </body>
 </html>

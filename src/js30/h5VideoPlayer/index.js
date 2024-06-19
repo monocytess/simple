@@ -16,7 +16,16 @@ let isPlaying = false
 let duration
 let format
 let progressTimer = null
+let videoListTimer = null
+let currentVideoIndex = 0
 
+let videoListCoords = {}
+
+let isDragging = false;
+let initialPanelX, initialPanelY;
+let initialMouseX, initialMouseY;
+
+const playerPanel = document.querySelector('.player')
 const video = document.querySelector('.viewer')
 video.src = videoSrc[0]
 
@@ -37,6 +46,40 @@ const playBtn = document.querySelector('.player__button.play')
 const previousBtn = document.querySelector('.previous')
 const nextBtn = document.querySelector('.next')
 
+const videoList = document.createElement('aside')
+videoList.classList.add('video-list')
+document.body.appendChild(videoList)
+videoSrc.forEach((item, index) => {
+  let videoName = item.split('/').pop().split('_').join(' ').split('.').shift()
+  // console.log('videoName >>>', videoName)
+
+  let videoItem = document.createElement('div')
+  videoItem.classList.add('video-item')
+  if (index === currentVideoIndex) {
+    videoItem.classList.add('video-active')
+  }
+  videoItem.innerHTML = `<span>${videoName}</span>`
+  videoList.appendChild(videoItem)
+})
+
+window.addEventListener('load', function () {
+  videoListCoords = videoList.getBoundingClientRect()
+  // console.log('videoListCoords >>>', videoListCoords)
+})
+
+window.addEventListener('click', function (ev) {
+  // console.log('ev >>>', ev)
+  let clickInSideList =
+    ev.clientX > (videoListCoords.left - videoListCoords.width)
+    && ev.clientX < (videoListCoords.right - videoListCoords.width)
+  // console.log('clickInSideList >>>', clickInSideList)
+  if (!ev.target.classList.contains('video-list') && !clickInSideList) {
+    videoList.classList.remove('video-list-show')
+  }
+}, true)
+
+const allScreenBtn = document.querySelectorAll('.screen')
+
 const allPlayBtn = document.querySelectorAll('.player__button.play > svg')
 // console.log('allPlayBtn >>>', allPlayBtn)
 allPlayBtn[1].style.display = 'none'
@@ -47,57 +90,33 @@ playButtons.forEach((item) => {
   })
 })
 
+allScreenBtn.forEach(item => {
+  // console.log('item >>>', item)
+  if (item.classList.contains('recover')) {
+    item.classList.add('dis-miss')
+  }
+  item.addEventListener('click', handleScreenChange)
+  item.addEventListener('mousedown', function (event) {
+    event.stopPropagation();
+  })
+})
+
 video.addEventListener('loadedmetadata', function () {
   duration = video.duration
-  const width = video.videoWidth
-  const height = video.videoHeight
   format = getVideoFormat(video.currentSrc)
   timeEnd.innerText = formatTime(duration)
 
+  controlPanel.style.opacity = 0.8
   initialSetting(videoInitialSetting, video)
 
-  controlPanel.addEventListener('mouseenter', function (ev) {
-    controlPanel.style.opacity = 0.8
-  })
-
-  controlPanel.addEventListener('mouseleave', function (ev) {
-    controlPanel.style.opacity = 0.15
-  })
-
-  video.addEventListener('mouseleave', function (ev) {
-    setControlOpacity('mouseleave')
-  })
-
-  video.addEventListener('mouseenter', function (ev) {
-    setControlOpacity('mouseenter')
-  })
-
-  function dismissControlPanel() {
-    if (!isPlaying && video.currentTime === 0) {
-      controlPanel.style.opacity = 0.15
-    }
-  }
-
-  function setControlOpacity(type) {
-    if (controlPanel.hasAttribute('style')) {
-      const currentStyles = controlPanel.getAttribute('style').split(';')
-      if (currentStyles.length > 1) {
-        currentStyles.forEach(item => {
-          if (item.includes('opacity') && item.includes('0.15') && type === 'mouseleave') {
-            controlPanel.style.opacity = 0
-          } else if (item.includes('opacity') && item.includes('0') && type === 'mouseenter') {
-            controlPanel.style.opacity = 0.15
-          }
-        })
-      }
-    }
-  }
+  video.addEventListener('mouseleave', () => setControlOpacity(0.15))
+  video.addEventListener('mouseenter', () => setControlOpacity(0.15))
+  video.addEventListener('dblclick', handleFullScreenChange)
 
   delay(dismissControlPanel, 5000)
 })
 
 video.addEventListener('ended', function () {
-  // console.log('video ended')
   setProgressBar('ended')
   setVideoSrc('next')
 })
@@ -150,30 +169,109 @@ nextBtn.addEventListener('click', function () {
   setVideoSrc('next')
 })
 
-controlPanel.onmousedown = function (ev) {
-  // console.log('controlPanel mousedown', ev)
-  controlPanel.style.zIndex = 10
+document.addEventListener('mouseenter', () => setControlOpacity(0.15))
+document.addEventListener('mouseleave', () => setControlOpacity(0))
 
-  let shiftX = ev.clientX - controlPanel.getBoundingClientRect().left
-  let shiftY = ev.clientY - controlPanel.getBoundingClientRect().top
+controlPanel.addEventListener('mouseenter', () => setControlOpacity(0.8))
+controlPanel.addEventListener('mouseleave', () => setControlOpacity(0.15))
 
-  document.body.append(controlPanel)
-  moveAt(ev.pageX, ev.pageY)
+controlPanel.addEventListener('mousedown', (event) => {
+  isDragging = true;
+  setCoordinate(event, 'mousedown')
 
-  function moveAt(pageX, pageY) {
-    controlPanel.style.left = pageX - shiftX + 'px'
-    controlPanel.style.top = pageY - shiftY + 'px'
+  document.addEventListener('mousemove', handleMouseMove);
+  document.addEventListener('mouseup', handleMouseUp);
+})
+
+videoList.addEventListener('mouseenter', () => clearTimeout(videoListTimer))
+
+videoList.addEventListener('mouseleave', () => {
+  if (videoListTimer) clearTimeout(videoListTimer)
+  videoListTimer = setTimeout(() => {
+    clearTimeout(videoListTimer)
+    videoListTimer = null
+    videoList.classList.remove('video-list-show')
+  }, 2000)
+})
+
+videoList.addEventListener('click', function (ev) {
+  let target = getClosestDivWithClass(ev.target, 'video-item')
+  // console.log('target >>>', target)
+
+  if (target.classList.contains('video-item')) {
+    let index = Array.from(target.parentElement.children).indexOf(target)
+    video.src = videoSrc[index]
+    currentVideoIndex = index
+    setVideoActiveStatus()
+    handlePlayIconChange(true)
+    let timer = setTimeout(() => {
+      clearTimeout(timer)
+      videoList.classList.remove('video-list-show')
+    }, 1000)
   }
+})
 
-  function onMouseMove(ev) {
-    moveAt(ev.pageX, ev.pageY)
+function setVideoActiveStatus() {
+  let videoItems = document.querySelectorAll('.video-item')
+
+  // console.log('videoItems >>>', videoItems, currentVideoIndex)
+  videoItems.forEach((item, index) => {
+    if (item.classList.contains('video-active')) {
+      item.classList.remove('video-active')
+    }
+    if (index === currentVideoIndex) {
+      item.classList.add('video-active')
+    }
+  })
+}
+
+function handleMouseMove(ev) {
+  if (!isDragging) return
+
+  const deltaX = initialPanelX + (ev.clientX - initialMouseX);
+  const deltaY = initialPanelY + (ev.clientY - initialMouseY);
+
+  controlPanel.style.left = `${deltaX}px`;
+  controlPanel.style.top = `${deltaY}px`;
+}
+
+function handleMouseUp() {
+  isDragging = false;
+  document.removeEventListener('mousemove', handleMouseMove);
+  document.removeEventListener('mouseup', handleMouseUp);
+}
+
+function setCoordinate(ev, evName = '') {
+  if (!evName) return
+  const rect = controlPanel.getBoundingClientRect();
+
+  switch (evName) {
+    case 'mousedown': {
+      initialMouseX = ev.clientX;
+      initialMouseY = ev.clientY;
+      initialPanelX = rect.left;
+      initialPanelY = rect.top;
+      return;
+    }
+    default:
+      break
   }
+}
 
-  document.addEventListener('mousemove', onMouseMove)
+function dismissControlPanel() {
+  if (!isPlaying && video.currentTime === 0) {
+    controlPanel.style.opacity = 0.15
+  }
+}
 
-  controlPanel.onmouseup = function () {
-    document.removeEventListener('mousemove', onMouseMove)
-    controlPanel.onmouseup = null
+function setControlOpacity(opacity = 0.15) {
+  if (controlPanel.hasAttribute('style')) {
+    const currentStyles = controlPanel.getAttribute('style').split(';')
+    const targetStyle = currentStyles.find(item => item.includes('opacity'))
+    // console.log('targetStyle >>>', targetStyle, typeof targetStyle, opacity)
+    if (targetStyle && `${targetStyle}`.split(':')[1].trim() !== `${opacity}`) {
+      controlPanel.style.opacity = opacity
+    }
   }
 }
 
@@ -183,7 +281,6 @@ function updateBackground() {
 }
 
 function handlePlayIconChange(canPlay = false) {
-  // console.log('handlePlayIconChange canPlay >>>', canPlay)
   if (canPlay) {
     allPlayBtn[0].style.display = 'none'
     allPlayBtn[1].style.display = 'block'
@@ -203,26 +300,108 @@ controlPanel.ondragstart = function () {
   return false
 }
 
+function handleScreenChange(ev) {
+  let target = getClosestDivWithClass(ev.target, 'screen')
+
+  if (target.classList.contains('screen')) {
+    let targetName = target.classList[1]
+    // console.log('targetName >>>', targetName)
+    if (targetName) {
+      switch (targetName) {
+        case 'full':
+        case 'recover':
+          handleFullScreenChange()
+          break;
+        case 'v-list':
+          handleShowSideList()
+          break;
+        default:
+          break
+      }
+    }
+  }
+}
+
+function handleShowSideList() {
+  let method = videoList.classList.contains('video-list-show') ? 'remove' : 'add'
+  videoList.classList[method]('video-list-show')
+}
+
+function getClosestDivWithClass(elem, className) {
+  while (elem && !elem.classList.contains(className)) {
+    elem = elem.parentElement;
+    if (!elem) {
+      return null;
+    }
+  }
+  return elem;
+}
+
+function handleFullScreenChange() {
+  if (document.fullscreenElement) {
+    document.exitFullscreen()
+
+    if (playerPanel.classList.contains('full-play')) {
+      playerPanel.classList.remove('full-play')
+    }
+    if (video.classList.contains('viewer-max')) {
+      video.classList.remove('viewer-max')
+    }
+    allScreenBtn.forEach(item => {
+      if (item.classList.contains('full')) {
+        item.classList.remove('dis-miss')
+      }
+      if (item.classList.contains('recover')) {
+        item.classList.add('dis-miss')
+      }
+    })
+  } else {
+    document.documentElement.requestFullscreen()
+    if (!playerPanel.classList.contains('full-play')) {
+      playerPanel.classList.add('full-play')
+    }
+    if (!video.classList.contains('viewer-max')) {
+      video.classList.add('viewer-max')
+    }
+    document.body.style.background = 'black'
+    allScreenBtn.forEach(item => {
+      if (item.classList.contains('full')) {
+        item.classList.add('dis-miss')
+      }
+      if (item.classList.contains('recover')) {
+        item.classList.remove('dis-miss')
+      }
+    })
+  }
+}
+
 function setVideoSrc(type = '') {
   const index = videoSrc.indexOf(video.currentSrc)
+
   if (type === 'next') {
     if (index === videoSrc.length - 1) {
       video.src = videoSrc[0]
+      currentVideoIndex = 0
     } else {
       video.src = videoSrc[index + 1]
+      currentVideoIndex = index + 1
     }
   } else if (type === 'previous') {
     if (index === 0) {
       video.src = videoSrc[videoSrc.length - 1]
+      currentVideoIndex = videoSrc.length - 1
     } else {
       video.src = videoSrc[index - 1]
+      currentVideoIndex = index - 1
     }
   }
 
+  // console.log('setVideoSrc currentVideoIndex >>>', currentVideoIndex)
   let timer = setTimeout(() => {
+    setVideoActiveStatus()
     handlePlayIconChange(true)
     clearTimeout(timer)
-  }, 200)
+  }, 100)
 }
 
 function setProgressBar(status = 'playing') {
