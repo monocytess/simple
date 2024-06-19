@@ -1,7 +1,9 @@
- const panels = document.querySelectorAll('.panel');
+const panels = document.querySelectorAll('.panel');
+const bubble = document.querySelector('.bubble');
 
 function toggleOpen() {
   this.classList.toggle('open');
+  bubble.play()
 }
 
 panels.forEach(panel => panel.addEventListener('click', toggleOpen));
