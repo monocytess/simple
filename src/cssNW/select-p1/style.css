@@ -1,0 +1,7 @@
+@import "../../css/cssNW.css";
+
+main {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}

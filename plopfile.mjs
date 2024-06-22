@@ -7,7 +7,8 @@ import path from 'path';
 import fs from 'fs-extra';
 import {
   js30Generator,
-  cssNWGenerator
+  cssNWGenerator,
+  challengeGenerator
 } from "./plop_templates/prompts/index.mjs";
 
 
@@ -33,4 +34,5 @@ export default function (plop) {
 
   plop.setGenerator('js30', js30Generator)
   plop.setGenerator('cssNW', cssNWGenerator)
+  plop.setGenerator('challenge', challengeGenerator)
 }
