@@ -1,13 +1,9 @@
-const headerBlock = document.querySelector('.header-block');
-const navBar = document.querySelector('nav');
-
 const selects = document.querySelectorAll('select');
 const customInput = document.querySelector('.input-custom');
 
 let countDown;
 
 customInput.addEventListener('blur', function (e) {
-  // console.log(e.target.value)
   let tValue = e.target.value;
   if (tValue || Number(tValue)) {
     tValue = Math.floor(Number(tValue))
@@ -33,9 +29,7 @@ customInput.addEventListener('keydown', function (e) {
 
 selects.forEach(select => {
   select.addEventListener('change', function (e) {
-    // console.log(e.target.value, e, this)
     let seconds = Math.floor((new Date(`${e.target.value} 00:00:00`).getTime() - new Date().getTime()) / 1000);
-    // console.log('seconds: ', seconds)
     countDownTime(seconds)
     resetSelectsAndInput(this);
   })
@@ -50,11 +44,6 @@ function resetSelectsAndInput(elem) {
   if (elem !== customInput) {
     customInput.value = ''
   }
-}
-
-function fixedNav() {
-  let method = window.scrollY >= headerBlock.offsetHeight ? 'add' : 'remove';
-  navBar.classList[method]('fixed-nav');
 }
 
 function countDownTime(time) {
@@ -84,6 +73,7 @@ function displayLeft(second) {
 
   Object.entries(params).forEach(([key, value]) => {
     document.querySelector(`.${key}-number`).textContent = value
+    document.querySelector(`.${key}-number`).classList.add('no-before')
   })
 }
 
@@ -113,5 +103,3 @@ function getTimeFormat(time, format) {
 
   return formatTime(result)
 }
-
-window.addEventListener('scroll', fixedNav)

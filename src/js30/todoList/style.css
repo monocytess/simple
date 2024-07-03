@@ -1,5 +1,9 @@
 @import "../../css/js30.css";
 
+.background {
+  position: fixed;
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -7,9 +11,10 @@ main {
 }
 
 .todo-item {
+  z-index: 1;
   display: flex;
   align-items: center;
-  min-width: 45%;
+  min-width: 40vw;
   background-color: rgba(255 255 255 / 80%);
   border-bottom: 1px solid #ccc;
   box-shadow: 10px 10px 10px rgb(0 0 0 / 10%);
@@ -23,20 +28,18 @@ main {
   border-right: 1px solid #ccc;
 }
 
-label{
+label {
   padding-left: 10px;
   font-size: 0.8rem;
   color: #363636;
 }
 
 .todo-item:first-child {
-  margin-top: 12%;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  margin-top: 10vh;
+  border-radius: 8px 8px 0 0;
 }
 
 .todo-item:last-child {
-  margin-bottom: 12%;
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
+  margin-bottom: 10vh;
+  border-radius: 0 0 8px 8px;
 }

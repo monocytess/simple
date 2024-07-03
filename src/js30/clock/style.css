@@ -2,98 +2,84 @@
 
 .clock {
   position: relative;
-  width: 18rem;
-  height: 18rem;
+  width: 20vw;
+  height: 20vw;
   padding: 2rem;
   margin: 50px auto;
-  border: 7px solid white;
+  border: 1vw solid white;
   border-radius: 50%;
-  box-shadow: -4px -4px 10px rgb(67 67 67 / 50%),
-  inset 4px 4px 10px rgb(0 0 0 / 50%),
-  inset -4px -4px 10px rgb(67 67 67 / 50%),
-  4px 4px 10px rgb(0 0 0 / 30%);
+}
+
+.clock::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  content: '';
+  background: white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .outer-clock-face {
-  position: relative;
-  width: 120%;
-  height: 120%;
-  margin-top: -10%;
-  margin-left: -10%;
+  position: absolute;
+  inset: 0;
   overflow: hidden;
   border-radius: 100%;
 }
 
-.outer-clock-face::after {
-  transform: rotate(90deg);
-}
-
-.outer-clock-face::after,
-.outer-clock-face::before,
-.outer-clock-face .marking {
+.marking {
   position: absolute;
-  left: 49%;
-  z-index: 0;
+  right: 49%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
-  height: 100%;
-  content: '';
-}
-
-.outer-clock-face .marking {
   width: 2%;
+  height: 100%;
 }
 
-.outer-clock-face .marking .clock-header, .clock-footer {
-  width: 6px;
-  height: 16px;
+.clock-header, .clock-footer {
+  width: 4px;
+  height: 10px;
   background: yellow;
 }
 
-.outer-clock-face .marking .clock-header-weight, .clock-footer-weight {
-  width: 6px;
-  height: 20px;
+.clock-header-weight, .clock-footer-weight {
+  width: 4px;
+  height: 16px;
   background: lawngreen;
 }
 
-.outer-clock-face.marking .clock-footer-weight::after {
-  margin-bottom: -2%;
-}
-
-.outer-clock-face .marking-zero{
+.marking-zero {
   transform: rotate(0deg);
 }
 
-.outer-clock-face .marking-one {
+.marking-one {
   transform: rotate(30deg);
 }
 
-.outer-clock-face .marking-two {
+.marking-two {
   transform: rotate(60deg);
 }
 
-.outer-clock-face .marking-row {
+.marking-row {
   transform: rotate(90deg);
 }
 
-.outer-clock-face .marking-three {
+.marking-three {
   transform: rotate(120deg);
 }
 
-.outer-clock-face .marking-four {
+.marking-four {
   transform: rotate(150deg);
 }
 
 .clock-face {
   position: absolute;
-  top: 10%;
-  left: 10%;
-  z-index: 1;
-  width: 80%;
-  height: 80%;
-  border-radius: 100%;
+  inset: 0;
+  border-radius: 50%;
 }
 
 .hand {
@@ -109,7 +95,7 @@
   transform-origin: 100%;
 }
 
-.hand.hand-hour {
+.hand-hour {
   top: 49%;
   left: 21%;
   z-index: 3;
@@ -117,7 +103,7 @@
   background-color: white;
 }
 
-.hand.hand-minute {
+.hand-minute {
   left: 11%;
   z-index: 10;
   width: 40%;
@@ -125,21 +111,10 @@
   background-color: white;
 }
 
-.hand.hand-second {
+.hand-second {
   z-index: 20;
   width: 50%;
   height: 2px;
   background-color: white;
-}
-
-.clock-center{
-  position: absolute;
-  top: 48%;
-  left: 49%;
-  z-index: 2;
-  width: 16px;
-  height: 16px;
-  background: white;
-  border-radius: 50%;
 }
 

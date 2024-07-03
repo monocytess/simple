@@ -1,22 +1,35 @@
 @import "../../css/js30.css";
 
+.background {
+  position: fixed;
+}
+
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 20px;
 }
 
 .hero {
+  position: sticky;
+  top: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
+  padding: 10px 20px;
 }
 
 .hero > h1 {
   color: white;
   transform: rotate(350deg);
+}
+
+.bands-bar{
+  z-index: 1;
 }
 
 .bands-list {

@@ -3,10 +3,13 @@ import {dirname} from "node:path";
 import {fileURLToPath} from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
 import path from 'path';
 import fs from 'fs-extra';
-import {js30Generator} from "./plop_templates/prompts/index.mjs";
+import {
+  js30Generator,
+  cssNWGenerator,
+  challengeGenerator
+} from "./plop_templates/prompts/index.mjs";
 
 
 export default function (plop) {
@@ -30,4 +33,6 @@ export default function (plop) {
 */
 
   plop.setGenerator('js30', js30Generator)
+  plop.setGenerator('cssNW', cssNWGenerator)
+  plop.setGenerator('challenge', challengeGenerator)
 }

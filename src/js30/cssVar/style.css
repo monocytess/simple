@@ -37,13 +37,8 @@ main {
 
 .main-img {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  max-width: 100vw;
   padding: var(--spacing);
-  object-fit: cover;
 }
 
 .t-img {

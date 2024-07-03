@@ -8,7 +8,15 @@ const getCityInfo = async () => {
   cities.push(...data);
 }
 
-getCityInfo();
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOMContentLoaded')
+  return getCityInfo();
+})
+
+const searchInput = document.getElementById('searchInput')
+const suggestions = document.querySelector('.suggestions')
+
+searchInput.addEventListener('keyup', displayMatches)
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -38,18 +46,3 @@ function displayMatches() {
 
   suggestions.innerHTML = html.join('')
 }
-
-const searchInput = document.getElementById('searchInput')
-const suggestions = document.querySelector('.suggestions')
-const container = document.querySelector('main')
-
-const coords = searchInput.getBoundingClientRect()
-console.log('coords', coords)
-
-searchInput.addEventListener('keyup', displayMatches)
-
-window.addEventListener('scroll', function (ev) {
-  let method = window.scrollY >= coords.top ? 'add' : 'remove';
-  searchInput.classList[method]('fixed-search')
-  container.style.paddingTop = method === 'add' ? coords.bottom + 'px' : 0
-})
