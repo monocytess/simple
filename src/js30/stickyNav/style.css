@@ -1,28 +1,19 @@
 @import "../../css/js30.css";
 
-html, body {
-  overflow-x: initial;
-}
-
 .background {
   position: fixed;
 }
 
-.footer {
-  z-index: 1;
-}
-
 main {
   position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column;
-  width: 100%;
   min-height: 100vh;
 }
 
 .top-image-container {
   position: relative;
+  z-index: 1;
   width: 100%;
 }
 
@@ -36,26 +27,19 @@ main {
 }
 
 .top-image {
-  display: block;
   width: 100%;
   height: auto;
 }
 
-nav {
-  width: 100%;
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin-top: -10px;
   transition: all 0.2s;
 }
 
-.fixed-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  width: 100%;
-  box-shadow: 0 5px 10px 0 rgb(0 0 0 / 10%)
-}
-
-nav > ul {
+.nav-links {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -65,11 +49,11 @@ nav > ul {
   background-color: #333;
 }
 
-ul li {
+ul, li {
   list-style-type: none;
 }
 
-nav li {
+.nav-links > li {
   display: flex;
   flex: 1;
   align-items: center;
@@ -78,27 +62,14 @@ nav li {
 }
 
 li.logo {
+  flex: 1.5;
   max-width: 0;
   overflow: hidden;
   font-size: 1.2rem;
   font-style: italic;
   font-weight: 600;
   background-color: white;
-  transition: all 0.5s;
-}
-
-.fixed-nav li.logo {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  max-width: 500px;
-}
-
-li.logo a {
-  display: block;
-  padding: 15px 20px;
-  text-decoration: none;
+  transition: max-width 0.2s, color 0.5s, flex 0.5s;
 }
 
 .nav-links > li a {
@@ -107,9 +78,11 @@ li.logo a {
   font-size: 1.2rem;
   color: white;
   text-decoration: none;
+  word-break: keep-all;
 }
 
 .content {
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-self: center;

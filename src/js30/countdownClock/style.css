@@ -2,7 +2,6 @@
 
 html, body {
   min-height: 100vh;
-  overflow-x: initial;
 }
 
 .background {
@@ -27,41 +26,25 @@ main {
   width: 100%;
 }
 
-.header-tips {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translate(-50%, -50%);
-}
-
 .header-img {
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+.header-tips {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 nav {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
+  position: sticky;
+  top: 0;
   height: 50px;
   margin-top: -5px;
   background-color: #363636;
-  transition: all 0.5s;
-}
-
-.fixed-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  margin-top: 0;
 }
 
 ul li {
@@ -72,16 +55,8 @@ ul li {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-bar > li {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 20px;
 }
 
 .select-bar {
@@ -91,9 +66,6 @@ ul li {
 }
 
 .select-bar label {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   margin-right: 10px;
   color: #fff;
 }
@@ -108,11 +80,9 @@ ul li {
 }
 
 .clock-panel {
-  display: flex;
-  flex-direction: row;
+  display: inline-flex;
   align-items: center;
   justify-content: space-evenly;
-  width: 100%;
   height: 100vh;
   font-family: 'Courier New', Courier, monospace, sans-serif;
   font-size: 4rem;
@@ -125,9 +95,36 @@ ul li {
   );
 }
 
-.time-box{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+.time-box {
+  display: inline-table;
+}
+
+.day-number::before,
+.hour-number::before,
+.minute-number::before,
+.second-number::before {
+  content: '0'
+}
+
+.day-number.no-before::before,
+.hour-number.no-before::before,
+.minute-number.no-before::before,
+.second-number.no-before::before {
+  content: none;
+}
+
+.day-number::after {
+  content: '天';
+}
+
+.hour-number::after {
+  content: '时';
+}
+
+.minute-number::after {
+  content: '分';
+}
+
+.second-number::after {
+  content: '秒';
 }

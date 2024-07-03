@@ -76,7 +76,6 @@ const bands = [
   "of mice"
 ]
 
-const bandBar = document.querySelector(".bands-bar")
 const bandList = document.querySelector(".bands-list")
 
 function addList() {
@@ -88,7 +87,6 @@ bandList.addEventListener('click', (ev) => {
   let target = ev.target
 
   console.log('target:', target)
-
 })
 
 addList()

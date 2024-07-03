@@ -2,7 +2,6 @@
 
 html, body {
   min-height: 100vh;
-  overflow-x: initial;
 }
 
 .background {
@@ -18,34 +17,23 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  min-height: 100vh;
 }
 
 .nav {
-  position: relative;
-  top: -5px;
-  min-width: 100%;
-}
-
-.fixed-nav {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  z-index: 1;
   width: 100%;
+  margin-top: -5px;
   box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
 }
 
 .top-block {
   position: relative;
   width: 100%;
-  max-width: 100vw;
 }
 
 .top-image {
   width: 100%;
-  height: auto;
 }
 
 .nav-bar {
@@ -58,16 +46,8 @@ main {
   background-color: #333;
 }
 
-ul li {
+ul, li {
   list-style: none;
-}
-
-.highlight {
-  position: absolute;
-  z-index: 10;
-  display: block;
-  background: rebeccapurple;
-  transition: all 0.2s;
 }
 
 .nav-bar a {

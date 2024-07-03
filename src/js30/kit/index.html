@@ -10,65 +10,57 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./../../assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./../../assets/favicon-16x16.png">
   <script defer src="../../common/js30.base.js"></script>
-  <script src="./index.js" defer></script>
-
 </head>
 <body>
 <div class="background"></div>
 
-<div class="container">
-  <main>
-    <div class="key-main">
-      <div data-key="65" class="key">
-        <kbd>A</kbd>
-        <span class="key-tips">Clap</span>
-      </div>
-      <div data-key="83" class="key">
-        <kbd>S</kbd>
-        <span class="key-tips">HiHat</span>
-      </div>
-      <div data-key="68" class="key">
-        <kbd>D</kbd>
-        <span class="key-tips">Kick</span>
-      </div>
-      <div data-key="70" class="key">
-        <kbd>F</kbd>
-        <span class="key-tips">OpenHat</span>
-      </div>
-      <div data-key="71" class="key">
-        <kbd>G</kbd>
-        <span class="key-tips">Boom</span>
-      </div>
-      <div data-key="72" class="key">
-        <kbd>H</kbd>
-        <span class="key-tips">Ride</span>
-      </div>
-      <div data-key="74" class="key">
-        <kbd>J</kbd>
-        <span class="key-tips">Snare</span>
-      </div>
-      <div data-key="75" class="key">
-        <kbd>K</kbd>
-        <span class="key-tips">Tom</span>
-      </div>
-      <div data-key="76" class="key">
-        <kbd>L</kbd>
-        <span class="key-tips">Tink</span>
-      </div>
+<main>
+  <div class="key-main">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span>Clap</span>
     </div>
-
-    <div class="key-footer">
-      <div data-key="32" class="key float">
-        <kbd>Space</kbd>
-        <span class="key-tips">Play</span>
-      </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span>HiHat</span>
     </div>
-  </main>
-  <footer class="footer">
-     👨🏻‍🎨 by <a href="https://github.com/hviwen" target="_blank">&copy;pan</a> 2024
-  </footer>
-</div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span>Kick</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span>OpenHat</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span>Boom</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span>Ride</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span>Snare</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span>Tom</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span>Tink</span>
+    </div>
+  </div>
 
+  <div class="key-footer">
+    <div data-key="32" class="key float">
+      <kbd>Space</kbd>
+      <span>Play</span>
+    </div>
+  </div>
+</main>
 <section>
   <audio src="./../../assets/sounds/clap.wav" data-key="65"></audio>
   <audio src="./../../assets/sounds/hihat.wav" data-key="83"></audio>
@@ -81,5 +73,10 @@
   <audio src="./../../assets/sounds/tink.wav" data-key="76"></audio>
   <audio src="./../../assets/sounds/martial.wav" data-key="32"></audio>
 </section>
+
+<footer class="footer">
+  👨🏻‍🎨 by <a href="https://github.com/hviwen" target="_blank">&copy;pan</a> 2024
+</footer>
+<script src="./index.js" defer></script>
 </body>
 </html>
