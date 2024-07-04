@@ -224,7 +224,6 @@ function stockProfit(stock) {
   return profit;
 }
 
-
 function threeWords(text) {
   let textArr = text.split(' ').map(item => {
     return (!isNaN(Number(item)) && typeof Number(item) === 'number')
@@ -246,6 +245,247 @@ function threeWords(text) {
   }
 
   return false;
+}
+
+function removeAllBefore(values, b) {
+  return values.includes(b) ? values.slice(values.indexOf(b)) : values
+}
+
+function biggerPrice(limit, data) {
+  data.sort((a, b) => {
+    return b.price - a.price
+  })
+
+  return data.slice(0, limit)
+}
+
+function betweenMarkers(text, begin, end) {
+  return text.slice(
+    text.indexOf(begin) === -1 ? 0 : text.indexOf(begin) + begin.length,
+    text.indexOf(end) === -1 ? text.length : text.indexOf(end)
+  )
+}
+
+function splitPairs(text) {
+  text = text.length % 2 === 0 ? text : text + '_'
+  let res = []
+  let i = 0
+
+  while (res.length * 2 !== text.length) {
+    res.push(text.slice(i, i + 2))
+    i += 2
+  }
+
+  return res
+}
+
+function nearestValue(values, s) {
+  let collects = []
+
+  for (let i = 0; i < values.length; i++) {
+    let diff = Math.abs(s - values[i])
+    if (diff === 0) return values[i]
+
+    diff = Math.abs(s - values[i])
+    collects.push(diff)
+  }
+  console.log(collects)
+
+  return values[collects.indexOf(Math.min(...collects))]
+}
+
+function nonUniqueElements(data) {
+  let filters = []
+  for (let i = 0; i < data.length; i++) {
+    let [k] = data.splice(i, 1)
+    if (data.includes(k)) {
+      filters.push(k)
+      data.splice(i, 0, k)
+    } else {
+      data.splice(i, 0, NaN)
+    }
+  }
+  console.log('data >>', data)
+
+  return filters
+}
+
+function popularWords(text, words) {
+  const res = {}
+
+  words.forEach(item => {
+    res[item] = text.match(new RegExp(`\\b${item}\\b`, 'gi'))?.length || 0
+  })
+
+  return res
+}
+
+function secondIndex(text, symbol) {
+  let strings = text.split('')
+  let count = 0
+  for (let i = 0; i < strings.length; i++) {
+    if (symbol === strings[i]) count++
+    if (count === 2) {
+      return i
+    }
+  }
+
+  return null
+}
+
+function frequencySort(items = []) {
+  const map = new Map()
+  let arr = []
+
+  items.forEach(item => {
+    if (map.has(item)) {
+      let t = map.get(item)
+      t++
+      map.set(item, t)
+    } else {
+      map.set(item, 1)
+    }
+  })
+
+  let map2Arr = Array.from(map)
+  map2Arr.sort((a, b) => b[1] - a[1])
+
+  for (const [key, value] of map2Arr) {
+    console.log(key, value)
+    arr = arr.concat(Array(value).fill(key))
+  }
+  console.log('arr', arr)
+
+  return arr
+}
+
+function toTitleCase(sentence) {
+  if (sentence === '') return ''
+  let arr = []
+
+  sentence.toLowerCase().split(' ').forEach(str => arr.push(str.charAt(0).toUpperCase() + str.substring(1)))
+
+  return arr.join(' ')
+}
+
+function longestWord(sentence) {
+  if (!sentence) return ''
+  let strAr = sentence.split(' ')
+  const collect = []
+  strAr.forEach((item, index) => {
+    collect[index] = item.length
+  })
+
+  return strAr[collect.indexOf(Math.max(...collect))]
+}
+
+function isArmstrong(num) {
+  let numArr = `${num}`.split('')
+  let total = 0
+  numArr.forEach(num => {
+    num = Number(num)
+    total += Math.pow(num, numArr.length)
+  })
+
+  return total === num
+}
+
+function correctSentence(text) {
+  text = /^[A-Z]/g.test(text) ? text : text.charAt(0).toUpperCase() + text.slice(1)
+  text = /\.$/g.test(text) ? text : text + '.'
+
+  return text
+}
+
+function factorial(n) {
+  return n === 0 ? 1 : n * factorial(n - 1)
+}
+
+function countOccurrences(mainStr, subStr) {
+  mainStr = mainStr.toLowerCase()
+  subStr = subStr.toLowerCase()
+
+  // 创建一个正则表达式以匹配所有重叠的子字符串
+  const regex = new RegExp(`(?=${subStr})`, 'g');
+
+  // 使用正则表达式匹配并返回匹配的次数
+  return (mainStr.match(regex) || []).length;
+}
+
+function longestPrefix(arr) {
+  arr.sort((a, b) => a.length - b.length)
+  let mark = arr[0]
+  let res = ''
+
+  for (let i = 0; i < mark.length; i++) {
+    for (let j = 1; j < arr.length; j++) {
+      if (mark[i] !== arr[j][i]) {
+        return res
+      }
+    }
+    res += mark[i]
+  }
+
+  return res
+}
+
+function longestSubstr(s = '') {
+  let strArr = s.split('')
+
+  let maxLen = 0
+  let current = []
+  for (let i = 0; i < strArr.length; i++) {
+    let len = Math.max(current.length - 1, 0)
+    if (current[len] !== strArr[i]) {
+      // 情况1: 第一个
+      if (current.includes(strArr[i])) {
+        current.push(strArr[i])
+        current.shift()
+      } else {
+        current.push(strArr[i])
+      }
+    } else {
+      // 情况1: 最后一个
+      current.length = 0
+      current.push(strArr[i])
+    }
+
+    maxLen = Math.max(maxLen, current.length)
+  }
+  return maxLen
+}
+
+function fuzzyStringMatch(str1, str2, threshold) {
+  // 如果字符串长度差异大于允许的字符差异数，直接返回false
+  if (Math.abs(str1.length - str2.length) > threshold) {
+    return false;
+  }
+
+  // 计算两个字符串中不同字符的数量
+  let differenceCount = 0;
+  const maxLength = Math.max(str1.length, str2.length);
+
+  for (let i = 0; i < maxLength; i++) {
+    if (str1[i] !== str2[i]) {
+      differenceCount++;
+    }
+    // 如果不同字符的数量超过了允许的字符差异数，直接返回false
+    if (differenceCount > threshold) {
+      return false;
+    }
+  }
+
+  // 如果不同字符的数量在允许范围内，返回true
+  return true;
+}
+
+function exceptZero(items){
+  // 先收集所有非零的元素，并排序
+  const sortedNonZeroItems = items.filter(item => item !== 0).sort((a, b) => a - b);
+
+  // 重新组装数组，将0放回原来的位置
+  let sortedIndex = 0;
+  return items.map(item => (item === 0 ? 0 : sortedNonZeroItems[sortedIndex++]));
 }
 
 // function

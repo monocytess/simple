@@ -29,6 +29,7 @@ customInput.addEventListener('keydown', function (e) {
 
 selects.forEach(select => {
   select.addEventListener('change', function (e) {
+    if(!e.target.value) return
     let seconds = Math.floor((new Date(`${e.target.value} 00:00:00`).getTime() - new Date().getTime()) / 1000);
     countDownTime(seconds)
     resetSelectsAndInput(this);
