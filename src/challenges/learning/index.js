@@ -479,13 +479,349 @@ function fuzzyStringMatch(str1, str2, threshold) {
   return true;
 }
 
-function exceptZero(items){
+function exceptZero(items) {
   // 先收集所有非零的元素，并排序
   const sortedNonZeroItems = items.filter(item => item !== 0).sort((a, b) => a - b);
 
   // 重新组装数组，将0放回原来的位置
   let sortedIndex = 0;
   return items.map(item => (item === 0 ? 0 : sortedNonZeroItems[sortedIndex++]));
+}
+
+function covertNumber(n1, n2) {
+  if (n1 - n2 === 0) return 0
+  if (n1 - n2 < 0) return -1
+
+  return 1
+}
+
+function changingDirection(elements) {
+  if (elements.length <= 1) return 0
+  let prevDiff = covertNumber(elements[1], elements[0])
+  let count = 0
+
+  for (let i = 1; i < elements.length - 1; i++) {
+    let diff = covertNumber(elements[i + 1], elements[i])
+    if (diff * prevDiff < 0) {
+      count++
+    }
+    if (diff !== 0) {
+      prevDiff = diff
+    }
+  }
+
+  return count
+}
+
+function convertDate(date) {
+  const dateArr = date.split('/')
+  if (dateArr.length !== 3) return 'Error: Invalid date.'
+  let [day, month, year] = dateArr.map(Number)
+  if (isNaN(day) || isNaN(month) || isNaN(year)) return 'Error: Invalid date.'
+
+  const dateObj = new Date(year, month - 1, day)
+  if (dateObj.getFullYear() !== year || dateObj.getMonth() + 1 !== month || dateObj.getDate() !== day) {
+    return 'Error: Invalid date.'
+  }
+
+  const formattedYear = dateObj.getFullYear();
+  const formattedMonth = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+  const formattedDay = dateObj.getDate().toString().padStart(2, '0');
+
+  return `${formattedYear}-${formattedMonth}-${formattedDay}`;
+}
+
+function strictEqual(N) {
+  if (N <= 1) return N
+  return N + strictEqual(N - 1)
+}
+
+function maxDigit(value) {
+  let numArr = `${value}`.split('').map(Number)
+  return Math.max(...numArr)
+}
+
+function quadraticRoots(a, b, c) {
+  let x1 = (-b + Math.sqrt((Math.pow(b, 2) - 4 * a * c))) / (2 * a)
+  let x2 = (-b - Math.sqrt((Math.pow(b, 2) - 4 * a * c))) / (2 * a)
+
+  if (isNaN(x1) || isNaN(x2)) return ["No real roots"]
+
+  return [x1, x2]
+}
+
+function indexPower(ar, n) {
+  if (n >= ar.length) return -1
+
+  return Math.pow(ar[n], n)
+}
+
+function isPerfect(n) {
+  let count = 0
+  for (let i = 1; i <= n / 2; i++) {
+    if (n % i === 0) {
+      count += i
+    }
+  }
+  return count === n
+}
+
+function endZeros(a) {
+  let count = 0
+
+  while (a % 10 === 0) {
+    count++
+    if (a === 0) return count
+    a = a / 10
+  }
+
+  return count
+}
+
+function countDivisible(n, k) {
+  let count = 0
+  let i = 1
+  while (i <= n) {
+    if (i++ % k === 0) count++
+  }
+
+  return count
+}
+
+function isometricStrings(line1, line2) {
+  let l1Arr = line1.split('')
+  let l2Arr = line2.split('')
+  let map = new Map()
+
+  for (let i = 0; i < l1Arr.length; i++) {
+    if (map.has(l1Arr[i])) {
+      if (map.get(l1Arr[i]) !== l2Arr[i]) {
+        return false
+      }
+    } else {
+      map.set(l1Arr[i], l2Arr[i])
+    }
+  }
+
+  return true
+}
+
+function sumNumbers(text) {
+  let numArr = text.split(' ')
+  let total = 0
+  for (const numStr of numArr) {
+    total += !isNaN(Number(numStr)) ? Number(numStr) : 0
+  }
+  return total
+}
+
+function formatWords(text) {
+  if (/^\W/.test(text)) {
+    return formatWords(text.slice(1))
+  }
+  if (/\W$/.test(text)) {
+    return formatWords(text.slice(0, text.length - 1))
+  }
+  return text
+}
+
+function firstWord(text) {
+  let textArr = text.split(' ')
+  let fl = ''
+  for (let i = 0; i < textArr.length; i++) {
+    if (/\w/.test(`${textArr[i]}`)) {
+      fl = textArr[i]
+      break
+    }
+  }
+  fl = formatWords(fl)
+  const regex = /[!"#$%&()*+,\-./:;<=>?@[\\\]^_`{|}~]/;
+  if (!regex.test(fl)) {
+    return fl
+  }
+  let index = fl.split('').findIndex(item => regex.test(item))
+  // console.log('index >>', index)
+
+  return fl.slice(0, index)
+}
+
+function formatEnd(text) {
+  if (text.endsWith('\n')) {
+    return formatEnd(text.slice(0, text.length - 1))
+  }
+  return text
+}
+
+function nonEmptyLines(text) {
+  let total = 0
+  let tt = formatEnd(text.trim())
+  for (let t of tt.split('\n')) {
+    if (t.trim() !== '') {
+      total++
+    }
+  }
+  return total
+}
+
+function columnNumber(name) {
+  let total = 0
+  let wArr = name.split('')
+  let len = wArr.length
+
+  wArr.forEach(item => {
+    total += (`${item}`.charCodeAt(0) - 64) * Math.pow(--len <= 0 ? 1 : 26, Math.max(0, len))
+  })
+
+  return total
+}
+
+function sortByExt(files) {
+  let noNames = []
+  let noExt = []
+  let others = []
+
+  for (let i = 0; i < files.length; i++) {
+    let lIndex = files[i].lastIndexOf('.')
+    if (lIndex === 0) {
+      noNames.push(files[i])
+    } else if (lIndex === files[i].length - 1) {
+      noExt.push(files[i])
+    } else {
+      others.push(files[i])
+    }
+  }
+
+  others.sort((a, b) => {
+    const nA = a.slice(0, a.lastIndexOf('.'));
+    const nB = b.slice(0, b.lastIndexOf('.'));
+
+    if (nA < nB) return -1
+    if (nA > nB) return 1
+    return 0
+  })
+
+  return [].concat(noNames.sort()).concat(noExt.sort()).concat(others.sort((a, b) => {
+    const extA = a.slice(a.lastIndexOf('.'));
+    const extB = b.slice(b.lastIndexOf('.'));
+
+    if (extA < extB) return -1;
+    if (extA > extB) return 1;
+    return 0;
+  }))
+}
+
+function moveZeros(items) {
+  const collections = []
+  let zeros = []
+  items.forEach(item => item !== 0 ? collections.push(item) : item)
+
+  if (collections.length < items.length) {
+    zeros = Array(items.length - collections.length).fill(0)
+  }
+
+  return collections.concat(zeros)
+}
+
+function switchDict(data) {
+  const obj = {}
+
+  for (const [key, value] of Object.entries(data)) {
+    if (!obj.hasOwnProperty(`${value}`)) {
+      obj[`${value}`] = new Set()
+    }
+    obj[`${value}`].add(key)
+  }
+
+  return obj
+}
+
+function compress(items) {
+  for (let i = 0; i < items.length - 1; i++) {
+    if (items[i + 1] - items[i] === 0) {
+      items.splice(i, 1, '')
+    }
+  }
+  return items.filter(item => typeof item === 'number')
+}
+
+function chunkingBy(items, size) {
+  if (items.length === 0) return []
+  if (size >= items.length) return [items]
+
+  const res = []
+  for (let i = 0; i < Math.ceil(items.length / size); i++) {
+    res.push(items.slice(i * size, (i + 1) * size))
+  }
+  return res
+}
+
+function replaceBiggest(data) {
+  const n = data.length;
+  if (n === 0) return [];
+
+  // 初始化结果数组
+  const result = new Array(n);
+
+  // 初始化当前最大值为 -1
+  let maxRight = -1;
+
+  // 从右向左遍历数组
+  for (let i = n - 1; i >= 0; i--) {
+    // 将当前最大值放入结果数组中
+    result[i] = maxRight;
+
+    // 更新当前最大值
+    if (data[i] > maxRight) {
+      maxRight = data[i];
+    }
+  }
+
+  return result;
+}
+
+
+function aggrOperation(data) {
+  const res = {}
+
+  data.forEach(([key, value]) => {
+    const symbol = key[0];
+    const mainKey = key.slice(1);
+    const numValue = Number(value);
+
+    if (!res.hasOwnProperty(mainKey)) {
+      res[mainKey] = symbol === '-' ? -numValue : numValue;
+    } else {
+      switch (symbol) {
+        case '+':
+          res[mainKey] += numValue;
+          break;
+        case '-':
+          res[mainKey] -= numValue;
+          break;
+        case '*':
+          res[mainKey] *= numValue;
+          break;
+        case '/':
+          res[mainKey] = numValue === 0 ? res[mainKey] : res[mainKey] / numValue;
+          break;
+        case '=':
+          res[mainKey] = numValue;
+          break;
+        default:
+          res[mainKey] += numValue; // default to addition if no symbol
+          break;
+      }
+    }
+  })
+
+  const result = {};
+  for (const key in res) {
+    if (res[key] !== 0 && key !== '') {
+      result[key] = res[key];
+    }
+  }
+
+  return result;
 }
 
 // function

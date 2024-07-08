@@ -21,3 +21,13 @@ function isArmstrong(num: number): boolean {
 
   return total === num
 }
+
+function compress(items: number[]): number[] {
+  for (let i = 0; i < items.length - 1; i++) {
+    if (items[i + 1] - items[i] === 0) {
+      items.splice(i, 1, NaN)
+    }
+  }
+  console.log(items)
+  return items.filter(item => !isNaN(item))
+}
