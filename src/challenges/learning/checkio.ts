@@ -1,3 +1,4 @@
+/*
 function secondIndex(text: string, symbol: string): number | null {
   let strings = text.split('')
   let count = 0
@@ -30,4 +31,12 @@ function compress(items: number[]): number[] {
   }
   console.log(items)
   return items.filter(item => !isNaN(item))
+}*/
+
+function nonogramEncode_(data: string[]): number[][][] {
+
+  return [[],[]]
 }
+
+// Test case
+console.log(nonogramEncode_([" X X ", "X X X", " X X "]));

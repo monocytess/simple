@@ -779,7 +779,6 @@ function replaceBiggest(data) {
   return result;
 }
 
-
 function aggrOperation(data) {
   const res = {}
 
@@ -823,6 +822,152 @@ function aggrOperation(data) {
 
   return result;
 }
+
+function nonogramEncode_(data) {
+  const numRows = data.length;
+  const numColumns = data[0].length;
+  const columnClues = Array.from({length: numColumns}, () => []);
+
+  const rowClues = data.map(row => {
+    const clues = [];
+    let count = 0;
+    for (let char of row) {
+      if (char === 'X') {
+        count++;
+      } else if (count > 0) {
+        clues.push(count);
+        count = 0;
+      }
+    }
+    if (count > 0) clues.push(count);
+    return clues;
+  });
+
+  for (let col = 0; col < numColumns; col++) {
+    let count = 0;
+    for (let row = 0; row < numRows; row++) {
+      if (data[row][col] === 'X') {
+        count++;
+      } else if (count > 0) {
+        columnClues[col].push(count);
+        count = 0;
+      }
+    }
+    if (count > 0) {
+      columnClues[col].push(count);
+    }
+  }
+
+  const maxRowCluesLength = Math.max(...rowClues.map(clue => clue.length));
+  const rowCluesNormalized = rowClues.map(clue => [...Array(maxRowCluesLength - clue.length).fill(0), ...clue]);
+
+  const maxColumnCluesLength = Math.max(...columnClues.map(clue => clue.length));
+  const columnCluesNormalized = columnClues.map(clue => {
+    const padding = Array(maxColumnCluesLength - clue.length).fill(0);
+    return padding.concat(clue);
+  });
+
+  const column_ = []
+  for (let i = 0; i < columnCluesNormalized[0].length; i++) {
+    let tc = []
+    columnCluesNormalized.forEach(item => tc.push(item[i]))
+    column_.push(tc)
+  }
+
+  return [column_, rowCluesNormalized];
+}
+
+// Test case
+// console.log(nonogramEncode_([" X X ", "X X X", " X X "]));
+// console.log(nonogramEncode_(["X"]));
+// console.log(nonogramEncode_(["XX   X"," X XXX"," X XX "," XXX  "," XXXX ","   X  "]))
+
+function isAllUpper(text) {
+  const regex = /^[A-Z\s\d]*[A-Z]+[A-Z\s\d]*$/;
+  return regex.test(text);
+}
+
+function createZigzag(rows, cols, start = 1) {
+  let res = []
+  for (let i = 0; i < rows; i++) {
+    let _cols = Array(cols).fill(start).map((t, i) => t + i)
+    start = _cols[cols - 1] + 1
+    if (i % 2 !== 0) {
+      _cols.reverse()
+    }
+    res.push(_cols)
+  }
+  return res
+}
+
+function wordsOrder(text, words) {
+  let textArr = text.split(' ')
+  for (let word of words) {
+    if (!textArr.includes(word)) return false
+  }
+
+  let set = new Set(words)
+  if (words.length !== set.size) return false
+
+  let sortArray = Array(textArr.length).fill(-1)
+  for (let i = 0; i < textArr.length; i++) {
+    if (words.includes(textArr[i])) {
+      let index = words.indexOf(textArr[i])
+      sortArray[i] = index
+      words.splice(index, 1, '__')
+    }
+  }
+
+  let res = sortArray.filter(item => item !== -1)
+  for (let i = 0; i < res.length - 1; i++) {
+    if (res[i + 1] - res[i] <= 0) return false
+  }
+
+  return true
+}
+
+function removeAfterKth(items, k) {
+  if (k === 0) return []
+
+  let res = []
+
+  items.forEach(item => {
+    if (res.filter(i => i === item).length < k) {
+      res.push(item)
+    }
+  })
+
+  return res
+}
+
+function sortedGroups(items) {
+  if (items.length <= 1) return items
+
+  const result = []
+  let temp = [items[0]];
+
+  for (let i = 1; i < items.length; i++) {
+    // 判断当前元素与前一个元素的大小关系
+    const isAscending = items[i] >= items[i - 1];
+    const wasAscending = temp.length > 1 ? temp[temp.length - 1] >= temp[temp.length - 2] : isAscending;
+
+    if ((isAscending && wasAscending) || (!isAscending && !wasAscending)) {
+      // 如果当前元素与temp中最后一个元素保持相同的大小关系，则添加到temp
+      temp.push(items[i]);
+    } else {
+      // 如果当前元素与temp中最后一个元素的大小关系不同，则将temp添加到result，并重置temp
+      result.push(temp);
+      temp = [items[i]];
+    }
+  }
+
+  // 确保最后一个temp被添加到result
+  if (temp.length > 0) {
+    result.push(temp);
+  }
+  return result.sort().flat(Infinity);
+}
+
 
 // function
 // let list = [{}, [], 1, 2, 3, true, false, null, {}, "hi", 1, 2, 3]
