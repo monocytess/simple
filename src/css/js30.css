@@ -16,6 +16,7 @@ html, body {
   position: absolute;
   inset: 0;
   z-index: -1;
+  height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -58,4 +59,22 @@ html, body {
 
 .footer a:hover {
   color: yellow;
+}
+
+@media (aspect-ratio >= 1.75/1) {
+  .background {
+    background-image: url("../images/landscape_1x2.jpg");
+  }
+}
+
+@media (aspect-ratio >= 0.8/1) and (aspect-ratio <= 1.75/1) {
+  .background {
+    background-image: url("../images/portrait_1x1.jpg");
+  }
+}
+
+@media (aspect-ratio <= 0.8/1) {
+  .background {
+    background-image: url("../images/portrait_2x1.jpg");
+  }
 }

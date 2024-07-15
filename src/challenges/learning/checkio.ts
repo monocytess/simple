@@ -1,3 +1,4 @@
+/*
 function secondIndex(text: string, symbol: string): number | null {
   let strings = text.split('')
   let count = 0
@@ -21,3 +22,21 @@ function isArmstrong(num: number): boolean {
 
   return total === num
 }
+
+function compress(items: number[]): number[] {
+  for (let i = 0; i < items.length - 1; i++) {
+    if (items[i + 1] - items[i] === 0) {
+      items.splice(i, 1, NaN)
+    }
+  }
+  console.log(items)
+  return items.filter(item => !isNaN(item))
+}*/
+
+function nonogramEncode_(data: string[]): number[][][] {
+
+  return [[],[]]
+}
+
+// Test case
+console.log(nonogramEncode_([" X X ", "X X X", " X X "]));

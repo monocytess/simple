@@ -140,7 +140,7 @@ th, td.keep-all {
 }
 
 .table-price > tr > td {
-  text-align: "." center;
+  /* text-align: "." center; */
 }
 
 .square {
@@ -153,13 +153,78 @@ th, td.keep-all {
   background-size: 16px 16px;
 }
 
-.text-gradient{
-  background: linear-gradient(deepskyblue,deeppink);
+.text-gradient {
+  background: linear-gradient(deepskyblue, deeppink);
   background-clip: text;
 }
 
-.miss{
+.miss {
   color: transparent;
+}
+
+.pie-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.pie-simple {
+  width: 128px;
+  height: 128px;
+  overflow: hidden;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.pie-left,
+.pie-right {
+  position: relative;
+  float: left;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.pie-left::before,
+.pie-right::before,
+.pie-right::after {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  content: '';
+  background-color: deeppink;
+}
+
+.pie-left::before {
+  left: 100%;
+  opacity: calc(9999 * (var(--percent) - 50));
+  transform: rotate(calc(3.6deg * (var(--percent) - 50)));
+  transform-origin: left;
+}
+
+.pie-right::before {
+  right: 100%;
+  transform: rotate(calc(3.6deg * var(--percent)));
+  transform-origin: right;
+}
+
+.pie-right::after {
+  opacity: calc(9999 * (var(--percent) - 50));
+}
+
+.pie-loading {
+  width: 100px;
+  height: 100px;
+  color: rgb(0 0 0 / 40%);
+  border-radius: 100%;
+  box-shadow: 0 -20px rgb(0 0 0 / 90%),
+  20px 0,
+  0 20px,
+  -20px 0 rgb(0 0 0 / 70%),
+  -15px -15px rgb(0 0 0 / 80%),
+  15px -15px rgb(0 0 0 / 100%),
+  15px 15px;
+  animation: spin 1s steps(8) infinite;
 }
 
 .box {
@@ -196,4 +261,248 @@ th, td.keep-all {
 .content {
   height: 200px;
   background-color: #eee;
+}
+
+.linear-block {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+img {
+  width: 300px;
+  width: min(300px, 15vw);
+  height: 150px;
+}
+
+img:not([src]) {
+  background-color: #eee;
+  background-image: linear-gradient(to right bottom, transparent calc(50% - 1px), #ccc calc(50% - 1px), #ccc, transparent calc(50% + 1px)), linear-gradient(to top right, transparent calc(50% - 1px), #ccc calc(50% - 1px), #ccc, transparent calc(50% + 1px));
+}
+
+.linear {
+  width: 300px;
+  height: 150px;
+  margin: 10px;
+  border: solid deeppink;
+}
+
+.linear-block > button {
+  height: 40px;
+  padding: 0 20px;
+  color: #fff;
+  background-color: #2a80eb;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
+
+.linear-1 {
+  /* background-image: linear-gradient(to right top, white 100px, deepskyblue 100px 200px, white 200px); */
+  background-image: linear-gradient(45deg, white 100px, deepskyblue 100px 200px, white 200px);
+}
+
+.linear-2 {
+  background-image: radial-gradient(100px at 0 0, white, deepskyblue);
+}
+
+.linear-3 {
+  background-image: radial-gradient(100px at right 100px bottom 100px, white, deepskyblue);
+}
+
+.linear-4 {
+  background-image: radial-gradient(farthest-corner circle at right 100px bottom 100px, white, deepskyblue);
+}
+
+.linear-5 {
+  color: #fff;
+  background: dodgerblue radial-gradient(closest-side circle, rgb(255 70 70 / 90%), rgb(255 70 70 / 90%) 99%, rgb(255 70 70 / 0%) 100%) no-repeat center;
+  background-size: 0 0;
+  transition: all 0.2s;
+}
+
+.linear-5:active {
+  background-size: 250% 250%;
+}
+
+.linear-6 {
+  background-image: conic-gradient(white, deepskyblue);
+}
+
+.linear-7 {
+  width: 150px;
+  background-image: conic-gradient(yellowgreen 40%, gold 0deg 70%, deepskyblue 0deg);
+  border-radius: 50%;
+}
+
+.linear-8 {
+  background-image: linear-gradient(135deg, deepskyblue 0 6px, white 7px 12px);
+}
+
+.linear-9 {
+  background-image: repeating-linear-gradient(135deg, deepskyblue 0 6px, white 7px 12px);
+}
+
+.linear-10 {
+  border: 20px solid;
+  border-image: repeating-linear-gradient(135deg, deepskyblue 0 6px, white 7px 12px) 20;
+}
+
+.popup {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  visibility: hidden;
+  background: rgb(0 0 0 / 60%);
+  opacity: 0;
+  transition: visibility .2s cubic-bezier(.25, .5, 0, -1);
+}
+
+.popup-content {
+  transition: transform 0.2s;
+  transform: translateY(100%);
+}
+
+.active {
+  visibility: visible;
+  opacity: 1;
+  transition-property: opacity;
+}
+
+.active > .popup-content {
+  transform: translateY(0);
+}
+
+.flex-wrapper {
+  display: flex;
+}
+
+.a {
+  flex: 0 2 100px;
+  background-color: antiquewhite;
+}
+
+.b {
+  flex: 0 1 100px;
+  background-color: burlywood;
+}
+
+.c {
+  flex: 0 1 100px;
+  background-color: cadetblue;
+}
+
+.d {
+  flex: 3 0 20px;
+  background-color: deepskyblue;
+}
+
+.e {
+  flex: 2 0 20px;
+  background-color: purple;
+}
+
+.flex-ellipsis {
+  display: flex;
+  padding: 1em;
+  border: 1px solid deepskyblue;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item {
+  min-width: 0;
+}
+
+.flex-justify-1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-right: -10px;
+}
+
+.list-j {
+  width: 100px;
+  height: 100px;
+  margin: 15px 10px 0 0;
+  background-color: skyblue;
+}
+
+.flex-justify-1 > i {
+  width: 100px;
+  margin-right: 10px;
+}
+
+.grid-1 {
+  display: grid;
+  grid-template-rows: 25% 100px auto 60px;
+  grid-template-columns: 80px auto 100px;
+}
+
+.grid-1 > .g1 {
+  width: 100px;
+  height: 100px;
+  color: #fff;
+  background-color: deeppink;
+  border: 1px dashed white;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-gap: 2px;
+  border: 1px dashed black;
+}
+
+.grid-2 > .g2 {
+  padding: 50px;
+  background-color: green;
+  border: 1px solid white;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-gap: 5px;
+  border: 1px dashed white;
+}
+
+.grid-3 > .g3 {
+  padding: 50px;
+  background-color: darkolivegreen;
+  border: 1px solid #333;
+}
+
+.grid-4 {
+  display: grid;
+  grid: repeat(2, 1fr) / repeat(2, 1fr);
+  grid-auto-columns: 60px;
+  border: 1px dashed white;
+}
+
+.grid-4 > .g4-b {
+  grid-column: 3/4;
+  background-color: rgb(255 255 255 / 50%);
+}
+
+.grid-5 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  line-height: 40px;
+  border: 1px dashed deeppink;
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
