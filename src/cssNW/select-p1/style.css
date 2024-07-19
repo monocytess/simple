@@ -496,6 +496,106 @@ img:not([src]) {
   border: 1px dashed deeppink;
 }
 
+.var-1, .var-2 {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.var-btn-1 {
+  --open: ;
+
+  padding: 10px 20px;
+  color: #2a80eb;
+  text-shadow: var(--open, -1px -1px #0003);
+  background: var(--open, linear-gradient(#0003, transparent)) currentColor;
+  border: 1px solid var(--open, rgb(0 0 0 / 10%));
+  border-radius: 4px;
+  box-shadow: var(--open, inset 0 1px 2px rgb(0 0 0 / 10%));
+  transition: 0.15s;
+  -webkit-text-fill-color: #fff;
+}
+
+.var-btn-1:active {
+  --open: inherit;
+}
+
+.var-bar {
+  width: 300px;
+  background-color: #f2f2f2;
+  transition: 0.2s;
+}
+
+.var-bar::before {
+  display: block;
+  width: calc(1% * var(--percent));
+  overflow: hidden;
+  color: #fff;
+  text-align: right;
+  white-space: nowrap;
+  content: counter(progress) '%\2002';
+  counter-reset: progress var(--percent);
+  background-color: deepskyblue;
+}
+
+.media-1, .filter-1 {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.media-1 > .love {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  animation: heart-burst steps(28) 2s infinite both;
+}
+
+.flow-slogan {
+  font-size: 30px;
+  background-image: linear-gradient(to right, red, yellow, lime, aqua, blue, fuchsia);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hue 6s linear infinite;
+}
+
+.gradient-text {
+  position: relative;
+  overflow: hidden;
+  font-size: 3rem;
+  font-weight: bold;
+  color: black;
+}
+
+.gradient-text::before {
+  position: absolute;
+  top: calc(50% - 150px);
+  left: calc(50% - 150px);
+  width: 300px;
+  height: 300px;
+  content: '';
+  background: repeating-linear-gradient(-135deg,deepskyblue 0 4px,deeppink 5px 9px);
+  mix-blend-mode: lighten;
+  animation: spin 6s linear infinite;
+}
+
+@keyframes heart-burst {
+  0% {
+    object-position: 0%;
+  }
+
+  100% {
+    object-position: 100%;
+  }
+}
+
+@keyframes hue {
+  from {
+    filter: hue-rotate(0deg);
+  }
+
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
 
 @keyframes spin {
   0% {
