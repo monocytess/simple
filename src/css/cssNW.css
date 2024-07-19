@@ -40,7 +40,7 @@ main {
   height: 2px;
   content: "";
   background: yellow;
-  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  transition: 0.3s;
 }
 
 .footer a:hover::after {
