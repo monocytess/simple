@@ -35,7 +35,39 @@ function compress(items: number[]): number[] {
 
 function nonogramEncode_(data: string[]): number[][][] {
 
-  return [[],[]]
+  return [[], []]
+}
+
+function beatPrevious(digits: string): number[] {
+  if (digits.length === 1) return [Number(digits)]
+  let res = []
+
+  let currentIndex = 0
+  let prevNum = parseInt(digits[currentIndex])
+  res.push(prevNum)
+  currentIndex++
+
+  while (currentIndex < digits.length) {
+    let currentNum = 0
+    let found = false
+
+    for (let length = 1; length + currentIndex <= digits.length; length++) {
+      currentNum = parseInt(digits.substring(currentIndex, length + currentIndex))
+      if (currentNum > prevNum) {
+        res.push(currentNum)
+        prevNum = currentNum
+        currentIndex += length
+        found = true
+        break
+      }
+    }
+
+    if (!found) {
+      break
+    }
+  }
+
+  return res
 }
 
 // Test case

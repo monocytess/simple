@@ -1,0 +1,77 @@
+@import "../../css/cssNW.css";
+
+main {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.filter-block {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 1em 1.2em;
+}
+
+.bg-1 {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 2em;
+  color: #333;
+  background: linear-gradient(45deg, deeppink 25%, deepskyblue 0, deepskyblue 55%, palevioletred 0);
+
+  & > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30vw;
+    height: 200px;
+    background: rgb(255 255 255 / 70%);
+    transition: 0.3s;
+  }
+
+  .g-filter {
+    filter: blur(6px);
+  }
+
+  .g-backdrop-filter {
+    backdrop-filter: blur(6px);
+  }
+}
+
+.bg-2 {
+  width: 200px;
+  max-width: 50vw;
+  height: 300px;
+  background: url("../../images/portrait_1x1.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.bg-3 {
+  position: relative;
+  width: 200px;
+  height: 300px;
+  overflow: hidden;
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background: url("../../images/portrait_1x1.jpg") no-repeat center center;
+    filter: blur(50px);
+    background-size: cover;
+    transform: scale(3);
+  }
+}
+
+.fire {
+  box-sizing: border-box;
+  width: 0;
+  height: 0;
+  background-color: #b5932f;
+  filter: blur(20px) contrast(30);
+  border: 100px solid #000;
+  border-bottom: 100px solid transparent;
+  border-radius: 45%;
+  transform: scaleX(0.4);
+}
