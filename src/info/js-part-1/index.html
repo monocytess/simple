@@ -12,12 +12,23 @@
 </head>
 
 <body>
-  <main>
+<main>
 
-  </main>
-  <footer class="footer">
-    👨🏻‍🎨 by <a href="https://github.com/hviwen" target="_blank">&copy;pan</a> 2024
-  </footer>
-  <script src="./index.js" defer></script>
+</main>
+<footer class="footer">
+  👨🏻‍🎨 by <a href="https://github.com/hviwen" target="_blank">&copy;pan</a> 2024
+</footer>
+<script src="./index.js" defer></script>
+<script src="./part-2.js" defer></script>
+<script>
+  async function load() {
+    let log = await import('./load.js')
+    log.showHi()
+  }
+
+  setTimeout(() => {
+    load()
+  }, 1000)
+</script>
 </body>
 </html>
